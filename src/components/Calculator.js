@@ -32,7 +32,7 @@ export default function Calculator() {
     return (
         <div id="calculator" className="formstyle">
             <form name="form1">
-                <input className="textview" name="textview"/>
+                <input className="textview" id="display" name="textview"/>
             </form>
             <center>
             <table>

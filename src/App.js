@@ -3,6 +3,7 @@ import '../src/css/App.css'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Calculator from './components/Calculator';
+import Foods from './foods/Foods';
 
 class App extends Component {
 
@@ -18,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar showCalculator={this.showCalculator}/>
-        Testing
+        <Foods/>
         <Footer/>
         {this.state.displayCalculator === true ? <Calculator/> : null}
       </div>

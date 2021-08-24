@@ -6,30 +6,35 @@
 .formstyle {
     width: 250px;
     height: 330px;
-    margin: 10px auto;
+    margin: 30px auto;
     border: 3px solid #333;
     border-radius: 5px;
     padding: 20px;
+    padding-bottom: 45px;
     text-align: center;
     background-color: black;
 }
 
 /* Display top horizontal bar that contain some information. */
-h1 {
+/* h1 {
 	text-align: center;
 	padding: 20px;
 	background-color: #333;
 	color: black;
-}
+} */
 
 input:hover {
     background-color: red;
 }
+
+#display:hover {
+    background-color:rgb(230, 228, 228);
+}
 	
-* {
+/* * {
     margin: 0;
     padding: 0;
-}
+} */
 
 /* It is used to create the layout for calculator button. */
 .btn {
@@ -47,7 +52,7 @@ input:hover {
     width: 210px;
     margin: 5px;
     font-size: 25px;
-    padding: 5px;
+    padding: 10px;
     background-color: rgb(230, 228, 228);
 }
 
@@ -55,9 +60,9 @@ input:hover {
     text-align: center;
 }
 
-#back {
+/* #back {
     color: red;
-}
+} */
 
 #back:hover {
     color: black;

@@ -1,0 +1,99 @@
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.cf:after {
+    clear:both;
+}
+
+.searchForm {
+    background:#f4f4f4;
+    background:rgba(244,244,244,.79);
+    border: 1px solid #d3d3d3;
+    left: 50%;
+    padding: 2px;
+    position: fixed;
+    /* padding-top: 30px; */
+    /* margin: -10px 0 0 -170px; */
+    /* margin-top: 3px; */
+    margin-left: 14%;
+    top: 3px;
+    width:330px;
+    box-shadow:0 4px 9px rgba(0,0,0,.37);
+    -moz-box-shadow:0 4px 9px rgba(0,0,0,.37);
+    -webkit-box-shadow:0 4px 9px rgba(0,0,0,.37);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+  
+.searchForm input, .searchForm button {
+    float: left;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+  
+.searchForm input {
+    background:#fefefe;
+    border: none;
+    font:12px/12px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    margin-right: 5px;
+    padding: 10px;
+    width: 216px;
+    box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.4) inset, 1px 1px 1px rgba(255,255,255,.75);
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px
+}
+      
+.searchForm input:focus {
+    outline: none;
+    box-shadow:0 0 4px #333 inset;
+    -moz-box-shadow:0 0 4px #333 inset;
+    -webkit-box-shadow:0 0 4px #333 inset;
+}
+      
+.searchForm input::-webkit-input-placeholder {
+    font-style: italic;
+    line-height: 15px
+}
+  
+.searchForm input:-moz-placeholder {
+    font-style: italic;
+    line-height: 15px
+}
+  
+.searchForm button {
+    background: rgb(235, 195, 64);
+    background: -moz-linear-gradient(top, rgb(235, 195, 64) 0%, rgb(238, 155, 32) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(235, 195, 64)), color-stop(100%,rgb(238, 155, 32)));
+    background: -webkit-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: -o-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: -ms-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: linear-gradient(to bottom, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34adec', endColorstr='#2691dc',GradientType=0 );
+    border: none;
+    color:#fff;
+    cursor: pointer;
+    font: 13px/13px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    padding: 10px;
+    width:106px;
+    box-shadow: 0 0 2px #333 inset;
+    -moz-box-shadow: 0 0 2px #333 inset;
+    -webkit-box-shadow: 0 0 2px #333 inset;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+}
+
+.searchForm button:hover {
+    opacity:.9;
+}
