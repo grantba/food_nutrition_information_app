@@ -1,14 +1,17 @@
 .footer{
-    margin-top: 1rem;
-    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
     background-color: rgb(235, 195, 64);
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     line-height: 5px;
+    text-align: center;
+    font-weight: 900;
 }
 
 .footer a {
     text-decoration: none;
+    color: red;
 }
