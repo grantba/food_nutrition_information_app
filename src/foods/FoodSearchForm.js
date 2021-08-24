@@ -16,7 +16,7 @@ class FoodSearchForm extends Component {
     render() {
         return (
             <div className="searchform cf">
-                <form onSubmit={(event) => this.submitSearch(event.target.search.value, event)} className="searchForm"> 
+                <form onSubmit={(event) => this.props.searchFoods(this.state.name, event)} className="searchForm"> 
                 <input onChange={this.onChange} type="text" name="foodItem" placeholder="Name of Food"></input>  
                     <button>Search</button>
                 </form>
