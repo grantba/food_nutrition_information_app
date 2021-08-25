@@ -7,15 +7,15 @@ class Navbar extends Component {
         return (
             <div className="navbar">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#login">Login</a></li>
-                    <li><a href="#signup">Signup</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">My Foods</a></li>
+                    <li><a href="#">My Meals</a></li>
                     <li className="dropdown">
-                        <a href="javascript:void(0)" className="dropbtn">Dropdown</a>
+                        <a href="javascript:void(0)" className="dropbtn">My Account</a>
                         <div className="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Edit Account Information</a>
+                        <a href="#">Delete Account</a>
+                        <a href="#">Logout</a>
                         </div>
                     </li>
                     <li id="right"><a href="#calculator" onClick={this.props.showCalculator}>Calculator</a></li>
@@ -26,3 +26,4 @@ class Navbar extends Component {
 }
 
 export default Navbar
+
