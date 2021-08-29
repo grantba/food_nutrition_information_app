@@ -1,5 +1,5 @@
-#calculator {
-    margin-left: 80%;
+.drag-wrapper {
+    cursor: move;
 }
 
 /* Create the Outer layout of the Calculator. */
@@ -11,7 +11,6 @@
     border-radius: 5px;
     padding: 20px;
     padding-bottom: 45px;
-    text-align: center;
     background-color: black;
 }
 
@@ -23,11 +22,11 @@
 	color: black;
 } */
 
-input:hover {
+.formstyle input:hover {
     background-color: red;
 }
 
-#display:hover {
+.formstyle #display:hover {
     background-color:rgb(230, 228, 228);
 }
 	
@@ -37,7 +36,7 @@ input:hover {
 } */
 
 /* It is used to create the layout for calculator button. */
-.btn {
+.formstyle .btn {
     width: 50px;
     height: 50px;
     font-size: 25px;
@@ -48,7 +47,7 @@ input:hover {
 }
 
 /* It is used to display the numbers, operations and results. */
-.textview {
+.formstyle .textview {
     width: 210px;
     margin: 5px;
     font-size: 25px;
@@ -56,7 +55,7 @@ input:hover {
     background-color: rgb(230, 228, 228);
 }
 
-.center {
+.formstyle .center {
     text-align: center;
 }
 
@@ -64,10 +63,10 @@ input:hover {
     color: red;
 } */
 
-#back:hover {
+.formstyle #back:hover {
     color: black;
 }
 
-#symbols:hover {
+.formstyle #symbols:hover {
     color: black;
 }

@@ -3,7 +3,7 @@ import '../src/css/App.css'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Calculator from './components/Calculator';
-import Foods from './foods/Foods';
+import FoodSearchForm from './foods/FoodSearchForm'
 
 class App extends Component {
 
@@ -12,14 +12,14 @@ class App extends Component {
   }
 
   showCalculator = () => {
-    this.state.displayCalculator === true ? this.setState({displayCalculator: false}) : this.setState({displayCalculator: true})
+    this.setState({displayCalculator: !this.state.displayCalculator})
   }
 
   render() {
     return (
       <div className="App">
         <Navbar showCalculator={this.showCalculator}/>
-        <Foods/>
+        <FoodSearchForm/>
         <Footer/>
         {this.state.displayCalculator === true ? <Calculator/> : null}
       </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/Calculator.css'
+import Draggable from 'react-draggable'
 
 // Use insert() function to insert the number in textview.
 function insert(num, event) {
@@ -30,48 +31,52 @@ function clear(event) {
 
 export default function Calculator() {
     return (
-        <div id="calculator" className="formstyle">
-            <form name="form1">
-                <input className="textview" id="display" name="textview"/>
-            </form>
-            <center>
-            <table>
-                <tbody>
-                    <tr> 
-                        <td><input className="btn" type="button" value="🆑" onClick={(event) => clear(event)}/></td>
-                        <td><input className="btn" id="back" type="button" value="⬅" onClick={(event) => backspace(event)}/></td>
-                        <td><input className="btn" type="button" value="➗" onClick={(event) => insert('/', event)}/></td>
-                        <td><input className="btn" type="button" value="✖️" onClick={(event) => insert('*', event)}/></td>
-                    </tr>
+        <Draggable>
+            <div className="drag-wrapper">
+                <div className="formstyle">
+                    <form name="form1">
+                        <input className="textview" id="display" name="textview" placeholder="Drag to Move"/>
+                    </form>
+                    <center>
+                    <table>
+                        <tbody>
+                            <tr> 
+                                <td><input className="btn" type="button" value="🆑" onClick={(event) => clear(event)}/></td>
+                                <td><input className="btn" id="back" type="button" value="⬅" onClick={(event) => backspace(event)}/></td>
+                                <td><input className="btn" type="button" value="➗" onClick={(event) => insert('/', event)}/></td>
+                                <td><input className="btn" type="button" value="✖️" onClick={(event) => insert('*', event)}/></td>
+                            </tr>
 
-                    <tr> 
-                        <td><input className="btn" id="symbols" type="button" value="7" onClick={(event) => insert(7, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="8" onClick={(event) => insert(8, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="9" onClick={(event) => insert(9, event)}/></td>
-                        <td><input className="btn" type="button" value="➖" onClick={(event) => insert('-', event)}/></td>
-                    </tr>
-        
-                    <tr> 
-                        <td><input className="btn" id="symbols" type="button" value="4" onClick={(event) => insert(4, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="5" onClick={(event) => insert(5, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="6" onClick={(event) => insert(6, event)}/></td>
-                        <td><input className="btn" type="button" value="➕" onClick={(event) => insert('+', event)}/></td>
-                    </tr>
-        
-                    <tr> 
-                        <td><input className="btn" id="symbols" type="button" value="1" onClick={(event) => insert(1, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="2" onClick={(event) => insert(2, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="3" onClick={(event) => insert(3, event)}/></td>
-                        <td rowSpan="5"><input className="btn" id="symbols" style={{height: "110px"}} type="button" value="=" onClick={(event) => equal(event)}/></td>
-                    </tr>
+                            <tr> 
+                                <td><input className="btn" id="symbols" type="button" value="7" onClick={(event) => insert(7, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="8" onClick={(event) => insert(8, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="9" onClick={(event) => insert(9, event)}/></td>
+                                <td><input className="btn" type="button" value="➖" onClick={(event) => insert('-', event)}/></td>
+                            </tr>
+                
+                            <tr> 
+                                <td><input className="btn" id="symbols" type="button" value="4" onClick={(event) => insert(4, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="5" onClick={(event) => insert(5, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="6" onClick={(event) => insert(6, event)}/></td>
+                                <td><input className="btn" type="button" value="➕" onClick={(event) => insert('+', event)}/></td>
+                            </tr>
+                
+                            <tr> 
+                                <td><input className="btn" id="symbols" type="button" value="1" onClick={(event) => insert(1, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="2" onClick={(event) => insert(2, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="3" onClick={(event) => insert(3, event)}/></td>
+                                <td rowSpan="5"><input className="btn" id="symbols" style={{height: "110px"}} type="button" value="=" onClick={(event) => equal(event)}/></td>
+                            </tr>
 
-                    <tr>
-                        <td colSpan="2"><input className="btn" id="symbols" style={{width: "106px"}} type="button" value="0" onClick={(event) => insert(0, event)}/></td>
-                        <td><input className="btn" id="symbols" type="button" value="." onClick={(event) => insert('.', event)}/></td>
-                    </tr>
-                </tbody>
-	        </table>
-            </center>
-        </div>
+                            <tr>
+                                <td colSpan="2"><input className="btn" id="symbols" style={{width: "106px"}} type="button" value="0" onClick={(event) => insert(0, event)}/></td>
+                                <td><input className="btn" id="symbols" type="button" value="." onClick={(event) => insert('.', event)}/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </center>
+                </div>
+            </div>
+        </Draggable>
     )
 }
