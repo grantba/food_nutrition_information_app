@@ -12,6 +12,9 @@
     padding: 20px;
     padding-bottom: 45px;
     background-color: black;
+    position: fixed;
+    bottom: 30vmax;
+    right: 2vmax;
 }
 
 /* Display top horizontal bar that contain some information. */

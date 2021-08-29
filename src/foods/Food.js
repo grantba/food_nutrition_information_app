@@ -6,20 +6,20 @@ export default function Food(props) {
         <div className="card">
             <img src={props.food.thumbnail} alt={props.food.food_name}></img>
             <h2 className="title">{props.food.food_name}</h2>
-            <p>{props.food.calories} calories</p>
-            <p>{props.food.cholesterol} cholesterol</p>
-            <p>{props.food.dietary_fiber} dietary fiber</p>
-            <p>{props.food.potassium} potassium</p>
-            <p>{props.food.protein} protein</p>
-            <p>{props.food.saturated_fat} saturated fat</p>
-            <p>{props.food.sodium} sodium</p>
-            <p>{props.food.sugars} sugars</p>
-            <p>{props.food.total_carbohydrate} total carbohydrate</p>
-            <p>{props.food.total_fat} total fat</p>
-            <p>{props.food.serving_qty} serving quantity</p>
-            <p>{props.food.serving_unit} serving unit</p>
-            <p>{props.food.serving_weight_grams} serving weight in grams</p>
-            <p><button>Add to Favorites</button></p>
+            <p>Total Calories: {props.food.calories}</p>
+            <p>Total Fat: {props.food.total_fat} g</p>
+            <p>Saturated Fat: {props.food.saturated_fat} g</p>
+            <p>Cholesterol: {props.food.cholesterol} mg</p>
+            <p>Sodium: {props.food.sodium} mg</p>
+            <p>Total Carbohydrate: {props.food.total_carbohydrate} g</p>
+            <p>Dietary Fiber: {props.food.dietary_fiber} g</p>
+            <p>Sugars: {props.food.sugars} g</p>
+            <p>Protein: {props.food.protein} g</p>
+            <p>Potassium: {props.food.potassium} mg</p>
+            <p>Serving Size: {props.food.serving_qty}</p>
+            <p>Serving Unit: {props.food.serving_unit}</p>
+            <p>Serving Weight: {props.food.serving_weight_grams} g</p>
+            <button>Add to Favorites</button>
         </div>
     )
 }

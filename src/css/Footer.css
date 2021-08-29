@@ -9,6 +9,7 @@
     line-height: 10px;
     text-align: center;
     font-weight: 900;
+    border-top: solid #333 thick;
 }
 
 .footer a {
