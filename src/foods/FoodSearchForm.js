@@ -45,7 +45,7 @@ class FoodSearchForm extends Component {
         return (
             <div className="searchform cf">
                 <form onSubmit={(event) => this.searchFoods(this.state.food_name, event)} className="searchForm"> 
-                <input onChange={this.onChange} type="text" name="foodItem" placeholder="Name of Food"></input>  
+                    <input onChange={this.onChange} type="text" name="foodItem" placeholder="Name of Food"></input>  
                     <button>Search</button>
                 </form>
                 {this.props.food.length !== 0 ? <Food food={this.props.food}/> : null}
@@ -55,7 +55,6 @@ class FoodSearchForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    debugger
     return {
         food: state.searchResult.searchResult,
         message: state.message,

@@ -7,7 +7,6 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
                 requesting: true
             }
         case "GET_FAVORITES":
-            debugger
             return {
                 favorites: action.favorites,
                 message: "",

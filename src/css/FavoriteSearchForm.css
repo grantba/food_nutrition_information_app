@@ -1,0 +1,12 @@
+.favorite-form {
+    padding-top: 3%;
+    text-align: center;
+    color: beige;
+}
+
+.favorite-form input {
+    padding: 12px;
+    border-radius: 15px;
+    margin: 10px;
+    width: 20%;
+}

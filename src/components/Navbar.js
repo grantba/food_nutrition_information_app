@@ -9,8 +9,8 @@ class Navbar extends Component {
             <div className="navbar">
                 <ul>
                     <NavLink to="/"><li><a href="#">Home</a></li></NavLink>
-                    <NavLink to="/my_favorites"><li><a href="#">My Favorites</a></li></NavLink>
-                    <NavLink to="/my_meals"><li><a href="#">My Meals</a></li></NavLink>
+                    <NavLink to="/favorites"><li><a href="#">My Favorites</a></li></NavLink>
+                    <NavLink to="/meals"><li><a href="#">My Meals</a></li></NavLink>
                     <li id="dropdown">
                         <a href="#" id="dropbtn">My Account</a>
                         <div id="dropdown-content">

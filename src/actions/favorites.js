@@ -1,14 +1,9 @@
-export function getFavorites(userId) {
-    debugger
+export function getFavorites() {
     return (dispatch) => {
         dispatch({type: 'START_FETCHING_FAVORITES'});
-        const requestOptions = {
-            body: JSON.stringify({userId: `${userId}`})
-        }
-        fetch(`https://localhost:3000/favorites`, requestOptions)
+        fetch('http://localhost:3000/favorites')
             .then(resp => resp.json())
-            .then(favorites => {debugger})
-                // dispatch({type: 'GET_FAVORITES', favorites}))    
+            .then(favorites => dispatch({type: 'GET_FAVORITES', favorites}))    
     }
 }
 

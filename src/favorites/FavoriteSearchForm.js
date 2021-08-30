@@ -1,18 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import '../css/FavoriteSearchForm.css'
 
-class FavoriteSearchForm extends Component {
-
-    state = {
-
-    }
-    
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+export default function FavoriteSearchForm(props) {
+    return (
+        <div className="favorite-form">
+            <label htmlFor="filter-favorites"></label>
+            <input type="text" onChange={props.handleChange} placeholder="Filter Favorites..."/>  
+        </div>
+    )
 }
-
-export default FavoriteSearchForm
