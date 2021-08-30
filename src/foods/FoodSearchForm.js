@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Food from './Food'
 import '../css/SearchForm.css'
 import {connect} from 'react-redux'
-import {searchFoods} from '../actions/foods'
+import {searchFoods, deleteFood} from '../actions/foods'
 
 class FoodSearchForm extends Component {
 
@@ -22,6 +22,10 @@ class FoodSearchForm extends Component {
         serving_qty: 0.0,
         serving_unit: 0.0,
         serving_weight_grams: 0.0
+    }
+
+    componentWillUnmount() {
+        this.props.deleteFood()
     }
 
     searchFoods = (foodItem, event) => {
@@ -59,4 +63,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {searchFoods})(FoodSearchForm)
+export default connect(mapStateToProps, {searchFoods, deleteFood})(FoodSearchForm)

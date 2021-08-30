@@ -16,9 +16,16 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
             } else {
                 return {
                     searchResult: action.food.foods[0],
-                    message: action.food.message,
+                    message: "",
                     requesting: false
                 }
+            }
+
+        case "DELETE_FOOD":
+            return {
+                searchResult: [],
+                message: "",
+                requesting: false
             }
   
         default:

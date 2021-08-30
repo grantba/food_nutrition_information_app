@@ -4,6 +4,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Calculator from './components/Calculator';
 import FoodSearchForm from './foods/FoodSearchForm'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Homepage from './components/Homepage';
+import Favorites from './favorites/Favorites';
 
 class App extends Component {
 
@@ -17,12 +20,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar showCalculator={this.showCalculator}/>
-        <FoodSearchForm/>
-        <Footer/>
-        {this.state.displayCalculator === true ? <Calculator/> : null}
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar showCalculator={this.showCalculator}/>
+          <Footer/>
+          {this.state.displayCalculator === true ? <Calculator/> : null}
+          <Switch>
+            <Route exact path="/" component={Homepage}></Route>
+            <Route exact path="/favorites" component={Favorites}/>
+            <Route path="/search_foods" component={FoodSearchForm}/>
+          </Switch>
+        </div>
+      </Router>
     )
   }
 }

@@ -17,3 +17,9 @@ export function searchFoods(foodItem) {
     }
 }
 
+export function deleteFood() {
+    return(dispatch) => {
+        dispatch({type: 'DELETE_FOOD'});
+    }
+}
+
