@@ -13,6 +13,8 @@
     padding-bottom: 45px;
     background-color: black;
     position: fixed;
+    /* margin-top: 5%;
+    margin-left: 80%; */
     bottom: 30vmax;
     right: 2vmax;
 }
