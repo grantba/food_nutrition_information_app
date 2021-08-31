@@ -12,7 +12,7 @@ class Navbar extends Component {
                     <NavLink to="/favorites"><li><a href="#">My Favorites</a></li></NavLink>
                     <NavLink to="/meals"><li><a href="#">My Meals</a></li></NavLink>
                     <li id="dropdown">
-                        <a href="#" id="dropbtn">My Account</a>
+                        <a href="my_account_information" id="dropbtn">My Account</a>
                         <div id="dropdown-content">
                         <NavLink to="/edit_account_information"><a href="#">Edit Account Information</a></NavLink>
                         <NavLink to="/delete_account"><a href="#">Delete Account</a></NavLink>

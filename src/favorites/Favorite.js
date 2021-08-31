@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/Favorite.css'
 
 export default function Favorite(props) {
+
     return (
         <div className="favorite" id={props.favorite.id}>
             <img src={props.favorite.food.thumbnail} alt={props.favorite.food.food_name}></img>
@@ -19,8 +20,8 @@ export default function Favorite(props) {
             <p>Potassium: {props.favorite.food.potassium} mg</p>
             <p>Serving Size: {props.favorite.food.serving_qty} {props.favorite.food.serving_unit}</p>
             <p>Serving Weight: {props.favorite.food.serving_weight_grams} g</p>
-            <button id="top">Edit</button>
-            <button id="bottom">Delete</button>
+            <button id="top" onClick={() => props.editFavorite(props.favorite)} >Edit</button>
+            <button id="bottom" onClick={() => props.deleteFavorite(props.favorite)} >Delete</button>
         </div>
     ) 
 }

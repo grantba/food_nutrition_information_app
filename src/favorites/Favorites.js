@@ -3,7 +3,7 @@ import '../css/index.css';
 import FavoriteSearchForm from './FavoriteSearchForm'
 import Favorite from './Favorite'
 import {connect} from 'react-redux'
-import {getFavorites, addFavorite} from '../actions/favorites'
+import {getFavorites, editFavorite, deleteFavorite, addFavoriteFood} from '../actions/favorites'
 import {Switch, Route} from 'react-router-dom'
 
 class Favorites extends Component {
@@ -26,23 +26,25 @@ class Favorites extends Component {
         })
     }
 
+    editFavorite = favorite => {
+        debugger
+    }
+
+    deleteFavorite = favorite => {
+        debugger
+    }
+
     render() {
-        const filteredFavorites = this.filterFavorites()
+        debugger
         return (
             <div>
                 <Switch>
                     <Route exact path="/favorites">
                         <FavoriteSearchForm handleChange={this.handleChange}/>
                         <div className="flex">
-                        {this.state.name === "" && this.props.favorites.length !== 0 ? this.props.favorites.map(favorite => <Favorite key={favorite.id} favorite={favorite}/>) :
-                            this.state.name !== "" && this.props.favorites !== undefined ? filteredFavorites.map(favorite => <Favorite key={favorite.id} favorite={favorite}/>) : null}
+                        {this.state.name === "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.props.favorites.map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) :
+                            this.state.name !== "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.filterFavorites().map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) : null}
                         </div>
-                    </Route>
-                    <Route exact path="/favorites/:id" component={(routeInfo) => {
-                        const routeId = parseInt(routeInfo.match.params.id)
-                        const favorite = this.props.favorites.find(favorite => favorite.id === routeId)
-                        return <Favorite favorite={favorite}/>
-                    }}>
                     </Route>
                 </Switch>
             </div>
@@ -60,4 +62,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getFavorites, addFavorite})(Favorites)
+export default connect(mapStateToProps, {getFavorites, editFavorite, deleteFavorite, addFavoriteFood})(Favorites)

@@ -13,11 +13,17 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
                 requesting: false
             }
 
-        case "ADD_FAVORITE":
-            debugger
+        case "ADD_FAVORITE_FOOD":
             return {
                 ...state,
                 favorites: action.favorite,
+                message: "",
+                requesting: false
+            }
+
+        case "DELETE_FOOD":
+            return {
+                searchResult: [],
                 message: "",
                 requesting: false
             }

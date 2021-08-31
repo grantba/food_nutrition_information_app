@@ -2,26 +2,13 @@ import React, {Component} from 'react'
 import Food from './Food'
 import '../css/SearchForm.css'
 import {connect} from 'react-redux'
-import {searchFoods, deleteFood} from '../actions/foods'
+import {searchFoods} from '../actions/foods'
+import {addFavoriteFood, deleteFood} from '../actions/favorites'
 
 class FoodSearchForm extends Component {
 
     state = {
-        food_name: "",
-        calories: 0.0,
-        cholesterol: 0.0,
-        dietary_fiber: 0.0,
-        potassium: 0.0,
-        protein: 0.0,
-        saturated_fat: 0.0,
-        sodium: 0.0,
-        sugars: 0.0,
-        total_carbohydrate: 0.0,
-        total_fat: 0.0,
-        thumbnail: "",
-        serving_qty: 0.0,
-        serving_unit: 0.0,
-        serving_weight_grams: 0.0
+        food_name: ""
     }
 
     componentWillUnmount() {
@@ -41,6 +28,10 @@ class FoodSearchForm extends Component {
         })
     }
 
+    addToFavorites = (foodItem) => {
+        this.props.addFavoriteFood(foodItem)
+    }
+
     render() {
         return (
             <div className="searchform cf">
@@ -48,7 +39,7 @@ class FoodSearchForm extends Component {
                     <input onChange={this.onChange} type="text" name="foodItem" placeholder="Name of Food"></input>  
                     <button>Search</button>
                 </form>
-                {this.props.food.length !== 0 ? <Food food={this.props.food}/> : null}
+                {this.props.food.length !== 0 ? <Food food={this.props.food} addToFavorites={this.addToFavorites}/> : null}
             </div>
         )
     }
@@ -58,8 +49,8 @@ const mapStateToProps = (state) => {
     return {
         food: state.searchResult.searchResult,
         message: state.message,
-        requesting: state.requesting  
+        requesting: state.requesting
     }
 }
 
-export default connect(mapStateToProps, {searchFoods, deleteFood})(FoodSearchForm)
+export default connect(mapStateToProps, {searchFoods, deleteFood, addFavoriteFood})(FoodSearchForm)

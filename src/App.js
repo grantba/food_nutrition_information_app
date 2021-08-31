@@ -27,7 +27,8 @@ class App extends Component {
           {this.state.displayCalculator === true ? <Calculator/> : null}
           <Switch>
             <Route exact path="/" component={Homepage}></Route>
-            <Route exact path="/favorites" component={Favorites}/>
+            <Route path="/favorites" component={Favorites}/>
+            <Route path="/favorites/:id" component={Favorites}/>
             <Route path="/search_foods" component={FoodSearchForm}/>
           </Switch>
         </div>
