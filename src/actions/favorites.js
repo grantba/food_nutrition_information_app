@@ -7,9 +7,15 @@ export function getFavorites() {
     }
 }
 
-export function deleteFood() {
+export function deleteFavoriteFood() {
     return(dispatch) => {
-        dispatch({type: 'DELETE_FOOD'});
+        dispatch({type: 'DELETE_FAVORITE_FOOD'});
+    }
+}
+
+export function editFavoriteFood() {
+    return(dispatch) => {
+        dispatch({type: 'EDIT_FAVORITE_FOOD'});
     }
 }
 

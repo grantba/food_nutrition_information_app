@@ -3,7 +3,7 @@ import '../css/index.css';
 import FavoriteSearchForm from './FavoriteSearchForm'
 import Favorite from './Favorite'
 import {connect} from 'react-redux'
-import {getFavorites, editFavorite, deleteFavorite, addFavoriteFood} from '../actions/favorites'
+import {getFavorites, editFavoriteFood, deleteFavoriteFood, addFavoriteFood} from '../actions/favorites'
 import {Switch, Route} from 'react-router-dom'
 
 class Favorites extends Component {
@@ -62,4 +62,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getFavorites, editFavorite, deleteFavorite, addFavoriteFood})(Favorites)
+export default connect(mapStateToProps, {getFavorites, editFavoriteFood, deleteFavoriteFood, addFavoriteFood})(Favorites)

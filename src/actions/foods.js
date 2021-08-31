@@ -16,3 +16,9 @@ export function searchFoods(foodItem) {
             .then(food => dispatch({type: 'SEARCH_FOOD', food}))    
     }
 }
+
+export function deleteSearch() {
+    return(dispatch) => {
+        dispatch({type: 'DELETE_SEARCH'});
+    }
+}

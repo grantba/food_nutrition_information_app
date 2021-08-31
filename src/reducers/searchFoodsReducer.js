@@ -20,10 +20,19 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
                     requesting: false
                 }
             }
+
+        case "DELETE_SEARCH":
+            return {
+                searchResult: [],
+                message: "",
+                requesting: false
+            }
   
         default:
             return {
-                searchResult: []
+                searchResult: [],
+                message: "",
+                requesting: false
             }
     }
 }

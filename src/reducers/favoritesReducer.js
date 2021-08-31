@@ -21,7 +21,14 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
                 requesting: false
             }
 
-        case "DELETE_FOOD":
+        case "DELETE_FAVORITE_FOOD":
+            return {
+                searchResult: [],
+                message: "",
+                requesting: false
+            }
+
+        case "EDIT_FAVORITE_FOOD":
             return {
                 searchResult: [],
                 message: "",
