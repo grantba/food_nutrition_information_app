@@ -37,7 +37,7 @@ export function addFavoriteFood(foodItem) {
             serving_qty: foodItem.serving_qty,
             serving_unit: foodItem.serving_unit,
             serving_weight_grams: foodItem.serving_weight_grams,
-            category_type: "Yummy",
+            category_type: "",
             user_id: 1
         }
         const requestOptions = {

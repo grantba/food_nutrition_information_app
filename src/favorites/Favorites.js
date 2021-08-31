@@ -4,25 +4,40 @@ import FavoriteSearchForm from './FavoriteSearchForm'
 import Favorite from './Favorite'
 import {connect} from 'react-redux'
 import {getFavorites, editFavoriteFood, deleteFavoriteFood, addFavoriteFood} from '../actions/favorites'
-import {Switch, Route} from 'react-router-dom'
 
 class Favorites extends Component {
 
     state = {
-        name: ""
+        name: "",
+        category: "",
+        searchType: "name"
     }
 
     componentDidMount() {
         this.props.getFavorites()
     }
 
-    handleChange = (event) => {
-        this.setState({name: event.target.value})
+    handleSearchType = (type) => {
+        type === "name" ? this.setState({name: "", category: "", searchType: "category"}) : this.setState({name: "", category: "", searchType: "name"})
     }
 
-    filterFavorites = () => {
+    handleChange = (event) => {
+        if (event.target.id === "filter-favorites-by-category") {
+            this.setState({name: "", category: event.target.value, searchType: "category"})
+        } else {
+            this.setState({name: event.target.value, category: "", searchType: "name"})
+        }
+    }
+
+    filterFavoritesByName = () => {
         return this.props.favorites.filter(favorites => {
             return favorites.food.food_name.toLowerCase().includes(this.state.name.toLowerCase())
+        })
+    }
+
+    filterFavoritesByCategory = () => {
+        return this.props.favorites.filter(favorites => {
+            return favorites.food_category_type.toLowerCase().includes(this.state.category.toLowerCase())
         })
     }
 
@@ -35,18 +50,12 @@ class Favorites extends Component {
     }
 
     render() {
-        debugger
         return (
             <div>
-                <Switch>
-                    <Route exact path="/favorites">
-                        <FavoriteSearchForm handleChange={this.handleChange}/>
-                        <div className="flex">
-                        {this.state.name === "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.props.favorites.map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) :
-                            this.state.name !== "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.filterFavorites().map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) : null}
-                        </div>
-                    </Route>
-                </Switch>
+                <FavoriteSearchForm searchType={this.state.searchType} handleSearchType={this.handleSearchType} handleChange={this.handleChange}/>
+                {this.state.name === "" && this.state.category === "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.props.favorites.map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) :
+                    this.state.name !== "" && this.props.favorites.length !== 0  ? this.filterFavoritesByName().map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) : 
+                    this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <Favorite key={favorite.id} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} favorite={favorite}/>) : null}
             </div>
         )
     }
@@ -57,8 +66,8 @@ const mapStateToProps = (state) => {
     // .filter(favorites => {favorites.userId == 1})
     return {
         favorites: state.favorites.favorites,
-        message: state.message,
-        requesting: state.requesting
+        message: state.favorites.message,
+        requesting: state.favorites.requesting
     }
 }
 
