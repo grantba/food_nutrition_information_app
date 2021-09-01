@@ -6,7 +6,7 @@ import Calculator from './components/Calculator';
 import FoodSearchForm from './foods/FoodSearchForm'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Homepage from './components/Homepage';
-import Favorites from './favorites/Favorites';
+import FavoritesContainer from './favorites/FavoritesContainer';
 
 class App extends Component {
 
@@ -27,8 +27,8 @@ class App extends Component {
           {this.state.displayCalculator === true ? <Calculator/> : null}
           <Switch>
             <Route exact path="/" component={Homepage}></Route>
-            <Route path="/favorites" component={Favorites}/>
-            <Route path="/favorites/:id" component={Favorites}/>
+            <Route path="/favorites" component={FavoritesContainer}/>
+            <Route path="/favorites/:id" component={FavoritesContainer}/>
             <Route path="/search_foods" component={FoodSearchForm}/>
           </Switch>
         </div>

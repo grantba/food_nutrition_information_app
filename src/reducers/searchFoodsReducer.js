@@ -33,7 +33,7 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
                 searchResult: [],
                 message: "",
                 requesting: false
-            }
+            }    
     }
 }
 
