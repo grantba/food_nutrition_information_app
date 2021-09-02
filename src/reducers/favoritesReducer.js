@@ -18,7 +18,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
         case "ADD_FAVORITE_FOOD":
             return {
                 favorites: [...state.favorites, action.favorite],
-                message: "",
+                message: "This food has been added to your favorites.",
                 requesting: false
             }
 

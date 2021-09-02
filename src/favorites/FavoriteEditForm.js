@@ -59,7 +59,8 @@ export default function FavoriteEditForm(props) {
                 <input type="hidden" name="user_id" value={props.favorite.user_id}/>
                 <input type="hidden" name="food_id" value={props.favorite.food_id}/> 
 
-                <input id="edit-button" type="submit" value="Edit Favorite Food"></input><br></br><br></br>
+                <input className="submit" name="cancel" value="cancel" type="submit"></input>
+                <input className="submit" name="edit" value="edit" type="submit"></input>
             </form>
         </div>
     )

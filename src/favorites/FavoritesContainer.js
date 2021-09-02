@@ -55,36 +55,41 @@ class FavoritesContainer extends Component {
     }
 
     handleEdit = (event) => {
-        const foodItem = {
-            thumbnail: event.target.thumbnail.value,
-            food_name: event.target.food_name.value,
-            food_category_type: event.target.category_type.value,
-            calories: event.target.calories.value,
-            total_fat: event.target.total_fat.value,
-            saturated_fat: event.target.saturated_fat.value,
-            cholesterol: event.target.cholesterol.value,
-            sodium: event.target.sodium.value,
-            total_carbohydrate: event.target.carbohydrate.value,
-            dietary_fiber: event.target.fiber.value,
-            sugars: event.target.sugars.value,
-            protein: event.target.protein.value,
-            potassium: event.target.potassium.value,
-            serving_qty: event.target.serving_qty.value,
-            serving_unit: event.target.serving_unit.value,
-            serving_weight_grams: event.target.serving_weight.value,
-            user_id: event.target.user_id.value,
-            food_id: event.target.food_id.value,
-            id: event.target.id // favorite_id
-        }
-        this.setState({...this.state, editForm: false, editId: 0})
-        this.props.editFavoriteFood(foodItem)
+        event.preventDefault()
+        // if (event.currentTarget.action.includes("=Cancel")) {
+        //     this.setState({...this.state, editForm: false, editId: 0}) 
+        // } else {
+            const foodItem = {
+                thumbnail: event.target.thumbnail.value,
+                food_name: event.target.food_name.value,
+                food_category_type: event.target.category_type.value,
+                calories: event.target.calories.value,
+                total_fat: event.target.total_fat.value,
+                saturated_fat: event.target.saturated_fat.value,
+                cholesterol: event.target.cholesterol.value,
+                sodium: event.target.sodium.value,
+                total_carbohydrate: event.target.carbohydrate.value,
+                dietary_fiber: event.target.fiber.value,
+                sugars: event.target.sugars.value,
+                protein: event.target.protein.value,
+                potassium: event.target.potassium.value,
+                serving_qty: event.target.serving_qty.value,
+                serving_unit: event.target.serving_unit.value,
+                serving_weight_grams: event.target.serving_weight.value,
+                user_id: event.target.user_id.value,
+                food_id: event.target.food_id.value,
+                id: event.target.id // favorite_id
+            }
+            this.setState({...this.state, editForm: false, editId: 0})
+            this.props.editFavoriteFood(foodItem)
+        // }
     }
 
     render() {
         return (
             <div>
                 <FavoriteSearchForm searchType={this.state.searchType} handleSearchType={this.handleSearchType} handleChange={this.handleChange}/>
-                {this.state.editForm === true ? this.getEditFavorite().map(favorite => <FavoriteEditForm handleEdit={this.handleEdit} favorite={favorite}/>) :
+                {this.state.editForm === true ? this.getEditFavorite().map(favorite => <FavoriteEditForm key={favorite.id} handleEdit={this.handleEdit} favorite={favorite}/>) :
                     this.state.name === "" && this.state.category === "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.props.favorites.map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
                     this.state.name !== "" && this.props.favorites.length !== 0  ? this.filterFavoritesByName().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) : 
                     this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
