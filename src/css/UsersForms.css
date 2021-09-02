@@ -1,0 +1,66 @@
+.user-form {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 375px;
+    font-family: arial;
+    background-color: rgb(236, 222, 195);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    margin-left: 45%;
+    margin-bottom: 10%;
+    color: #333;
+}
+
+.user-form #reason {
+    font-size: 15px;
+    color: black;
+    width: 80%;
+    max-width: 80%;
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.user-form h1 {
+    font-size: 40px;
+}
+
+.user-form input {
+    font-size: 15px;
+    color: black;
+    width: 50%;
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.user-form .submit {
+    background: rgb(235, 195, 64);
+    background: -moz-linear-gradient(top, rgb(235, 195, 64) 0%, rgb(238, 155, 32) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(235, 195, 64)), color-stop(100%,rgb(238, 155, 32)));
+    background: -webkit-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: -o-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: -ms-linear-gradient(top, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    background: linear-gradient(to bottom, rgb(235, 195, 64) 0%,rgb(238, 155, 32) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34adec', endColorstr='#2691dc',GradientType=0 );
+    border: none;
+    color:#fff;
+    cursor: pointer;
+    font: 13px/13px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    padding: 10px;
+    width:106px;
+    box-shadow: 0 0 2px #333 inset;
+    -moz-box-shadow: 0 0 2px #333 inset;
+    -webkit-box-shadow: 0 0 2px #333 inset;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.submit:hover {
+    opacity:.9;
+}
