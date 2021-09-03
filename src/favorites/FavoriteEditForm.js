@@ -59,8 +59,8 @@ export default function FavoriteEditForm(props) {
                 <input type="hidden" name="user_id" value={props.favorite.user_id}/>
                 <input type="hidden" name="food_id" value={props.favorite.food_id}/> 
 
-                <input className="submit" name="cancel" value="cancel" type="submit"></input>
-                <input className="submit" name="edit" value="edit" type="submit"></input>
+                <button id="cancel" className="submit" onClick={event => props.handleEdit(event)}>Cancel</button>
+                <input className="submit" type="submit" value="Edit"></input>
             </form>
         </div>
     )

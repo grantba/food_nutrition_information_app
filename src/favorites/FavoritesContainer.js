@@ -56,9 +56,9 @@ class FavoritesContainer extends Component {
 
     handleEdit = (event) => {
         event.preventDefault()
-        // if (event.currentTarget.action.includes("=Cancel")) {
-        //     this.setState({...this.state, editForm: false, editId: 0}) 
-        // } else {
+        if (event.target.id === "cancel") {
+            this.setState({...this.state, editForm: false, editId: 0}) 
+        } else {
             const foodItem = {
                 thumbnail: event.target.thumbnail.value,
                 food_name: event.target.food_name.value,
@@ -82,18 +82,22 @@ class FavoritesContainer extends Component {
             }
             this.setState({...this.state, editForm: false, editId: 0})
             this.props.editFavoriteFood(foodItem)
-        // }
+        }
     }
 
     render() {
+        debugger
+        if (!!this.props.requesting) return <h2 className="loading">Loading...</h2>
+        if (!!this.props.message) return <h2 className="loading">{this.props.message}</h2>
+        if (this.props.requesting === false && this.props.message === "" && this.props.favorites.length === 0) return <h2 className="empty-message">You have no favorites saved at this time. Visit the Search Foods tab to search foods that you can add to your list of favorites or use to create meals.</h2>
         return (
             <div>
                 <FavoriteSearchForm searchType={this.state.searchType} handleSearchType={this.handleSearchType} handleChange={this.handleChange}/>
-                {this.state.editForm === true ? this.getEditFavorite().map(favorite => <FavoriteEditForm key={favorite.id} handleEdit={this.handleEdit} favorite={favorite}/>) :
-                    this.state.name === "" && this.state.category === "" && this.props.favorites.length !== 0 && this.props.favorites.length > 1 ? this.props.favorites.map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
+                {this.state.editForm ? this.getEditFavorite().map(favorite => <FavoriteEditForm key={favorite.id} handleEdit={this.handleEdit} favorite={favorite}/>) :
+                    this.state.name === "" && this.state.category === "" && this.props.favorites.length !== 0 ? this.props.favorites.map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
                     this.state.name !== "" && this.props.favorites.length !== 0  ? this.filterFavoritesByName().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) : 
-                    this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
-                    this.props.requesting === true ? <h2 className="loading">Loading...</h2> : null}
+                    this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) 
+                    :null}
                 {/* {this.props.message !== "" ? alert(this.props.message) : null} */}
             </div>
         )

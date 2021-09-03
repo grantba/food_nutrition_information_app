@@ -38,8 +38,9 @@ class FoodSearchForm extends Component {
                     <button>Search</button>
                 </form>
                 {this.props.food.length !== 0 ? <Food food={this.props.food} addFavoriteFood={this.props.addFavoriteFood}/> : 
-                    this.props.message !== "" ? <h2 className="error">{this.props.message}.<br></br>Please try again.</h2> : 
-                    this.props.requesting ===true ? <h2 className="loading">Loading...</h2> : null}
+                    this.props.searchMessage !== "" ? <h2 className="error">{this.props.searchMessage}.<br></br>Please try again.</h2> : 
+                    this.props.favoriteMessage !== "" ? <h2 className="error">{this.props.favoriteMessage}</h2> :
+                    this.props.requesting ? <h2 className="loading">Loading...</h2> : null}
             </div>
         )
     }
@@ -48,7 +49,8 @@ class FoodSearchForm extends Component {
 const mapStateToProps = (state) => {
     return {
         food: state.searchResult.searchResult,
-        message: state.searchResult.message,
+        favoriteMessage: state.favorites.message,
+        searchMessage: state.searchResult.message,
         requesting: state.searchResult.requesting
     }
 }

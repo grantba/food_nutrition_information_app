@@ -1,27 +1,39 @@
 import React from 'react'
 import '../css/Favorite.css'
+import {connect} from 'react-redux'
 
-export default function FavoritesDisplay(props) {
-
+function FavoritesDisplay(props) {
+    const favorite = !!props.match ? props.favorites.find(fav => fav.id === parseInt(props.match.params.id)) : props.favorite
+    
     return (
-        <div className="favorite" id={props.favorite.id}>
-            <img src={props.favorite.food.thumbnail} alt={props.favorite.food.food_name}></img>
-            <h2 className="title" id={props.favorite.food_id}>{props.favorite.food.food_name}</h2>
-            {props.favorite.food_category_type === "" ? <h4>Category: Select Edit to Add a Category Type</h4> : <h3>Category: {props.favorite.food_category_type}</h3>}
-            <p>Total Calories: {props.favorite.food.calories}</p>
-            <p>Total Fat: {props.favorite.food.total_fat} g</p>
-            <p>Saturated Fat: {props.favorite.food.saturated_fat} g</p>
-            <p>Cholesterol: {props.favorite.food.cholesterol} mg</p>
-            <p>Sodium: {props.favorite.food.sodium} mg</p>
-            <p>Total Carbohydrate: {props.favorite.food.total_carbohydrate} g</p>
-            <p>Dietary Fiber: {props.favorite.food.dietary_fiber} g</p>
-            <p>Sugars: {props.favorite.food.sugars} g</p>
-            <p>Protein: {props.favorite.food.protein} g</p>
-            <p>Potassium: {props.favorite.food.potassium} mg</p>
-            <p>Serving Size: {props.favorite.food.serving_qty} {props.favorite.food.serving_unit}</p>
-            <p>Serving Weight: {props.favorite.food.serving_weight_grams} g</p>
-            <button id="top" onClick={() => props.editFavorite(props.favorite)} >Edit</button>
-            <button id="bottom" onClick={() => props.deleteFavoriteFood(props.favorite.id)} >Delete</button>
+        <div className="favorite" id={favorite.id}>
+            <img src={favorite.food.thumbnail} alt={favorite.food.food_name}></img>
+            <h2 className="title" id={favorite.food_id}>{favorite.food.food_name}</h2>
+            {favorite.food_category_type === "" ? <h4>Category: Select Edit to Add a Category Type</h4> : <h3>Category: {favorite.food_category_type}</h3>}
+            <p>Total Calories: {favorite.food.calories}</p>
+            <p>Total Fat: {favorite.food.total_fat} g</p>
+            <p>Saturated Fat: {favorite.food.saturated_fat} g</p>
+            <p>Cholesterol: {favorite.food.cholesterol} mg</p>
+            <p>Sodium: {favorite.food.sodium} mg</p>
+            <p>Total Carbohydrate: {favorite.food.total_carbohydrate} g</p>
+            <p>Dietary Fiber: {favorite.food.dietary_fiber} g</p>
+            <p>Sugars: {favorite.food.sugars} g</p>
+            <p>Protein: {favorite.food.protein} g</p>
+            <p>Potassium: {favorite.food.potassium} mg</p>
+            <p>Serving Size: {favorite.food.serving_qty} {favorite.food.serving_unit}</p>
+            <p>Serving Weight: {favorite.food.serving_weight_grams} g</p>
+            <button id="top" onClick={() => props.editFavorite(favorite)} >Edit</button>
+            <button id="bottom" onClick={() => props.deleteFavoriteFood(favorite.id)} >Delete</button>
         </div>
     ) 
 }
+
+const mapStateToProps = (state) => {
+    return {
+        favorites: state.favorites.favorites,
+        message: state.favorites.message,
+        requesting: state.favorites.requesting
+    }
+}
+
+export default connect(mapStateToProps)(FavoritesDisplay)

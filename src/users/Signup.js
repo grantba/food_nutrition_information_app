@@ -5,6 +5,7 @@ class Signup extends Component {
 
     state = {
         username: "",
+        email: "",
         password: "", 
         reason_for_use: ""
     }
@@ -19,11 +20,14 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className="user-form" style={{marginTop: "10%"}}>
+            <div className="user-form" style={{marginTop: "8%"}}>
                 <h1>Signup</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="username">User Name</label><br></br>
                     <input type="text" name="username" onChange={this.handleChange} value={this.state.username}/><br></br><br></br>
+
+                    <label htmlFor="email">Email</label><br></br>
+                    <input type="email" name="email" onChange={this.handleChange} value={this.state.email}/><br></br><br></br>
                     
                     <label htmlFor="password">Password</label><br></br>
                     <input type="password" name="password" onChange={this.handleChange} value={this.state.password}/><br></br><br></br>
