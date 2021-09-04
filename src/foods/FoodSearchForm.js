@@ -30,7 +30,6 @@ class FoodSearchForm extends Component {
     }
 
     render() {
-
         return (
             <div className="searchform cf">
                 <form onSubmit={(event) => this.searchFoods(this.state.food_name, event)} className="searchForm"> 

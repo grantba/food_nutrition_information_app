@@ -1,7 +1,10 @@
 export function getFavorites() {
     return (dispatch) => {
         dispatch({type: 'START_FETCHING_FAVORITES'});
-        fetch('http://localhost:3000/favorites')
+        const requestOptions = {
+            headers: authHeader()
+        }
+        fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
             .then(favorites => dispatch({type: 'GET_FAVORITES', favorites}))    
     }
@@ -11,7 +14,7 @@ export function deleteFavoriteFood(id) {
     return(dispatch) => {
         const requestOptions = {
             method: 'DELETE',
-            headers: {'Content-Type': 'application/json'}
+            headers: authHeader()
         }
         fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
         .then(() => dispatch({type: 'DELETE_FAVORITE_FOOD', id}))
@@ -22,7 +25,7 @@ export function editFavoriteFood(foodItem) {
     return(dispatch) => {
         const requestOptions = {
             method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
+            headers: authHeader(),
             body: JSON.stringify({favorite: foodItem})
         }
         fetch(`http://localhost:3000/favorites/${foodItem.id}`, requestOptions)
@@ -54,11 +57,22 @@ export function addFavoriteFood(foodItem) {
         }
         const requestOptions = {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: authHeader(),
             body: JSON.stringify({favorite: params})
         }
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
             .then(favorite => dispatch({type: 'ADD_FAVORITE_FOOD', favorite}))    
+    }
+}
+
+function authHeader() {
+    // return authorization header with jwt token
+    let user = localStorage.getItem('user')
+    let userToken = JSON.parse(localStorage.getItem('user')).jwt
+    if (user && userToken) {
+        return {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + userToken}
+    } else {
+        return {}
     }
 }

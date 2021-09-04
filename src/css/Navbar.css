@@ -58,6 +58,7 @@
   
 .navbar #dropdown-content a:hover {
     background-color: wheat;
+    display: block;
 }
   
 .navbar #dropdown:hover #dropdown-content {

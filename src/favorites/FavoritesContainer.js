@@ -4,6 +4,7 @@ import FavoriteSearchForm from './FavoriteSearchForm'
 import FavoriteEditForm from './FavoriteEditForm'
 import FavoritesDisplay from './FavoritesDisplay'
 import {connect} from 'react-redux'
+import { Switch, Route } from 'react-router-dom'
 import {getFavorites, editFavoriteFood, deleteFavoriteFood, addFavoriteFood} from '../actions/favorites'
 
 class FavoritesContainer extends Component {
@@ -86,20 +87,25 @@ class FavoritesContainer extends Component {
     }
 
     render() {
-        debugger
+        if (localStorage.getItem('user') === null) return <h2 className="loading">Loading...</h2>
         if (!!this.props.requesting) return <h2 className="loading">Loading...</h2>
         if (!!this.props.message) return <h2 className="loading">{this.props.message}</h2>
         if (this.props.requesting === false && this.props.message === "" && this.props.favorites.length === 0) return <h2 className="empty-message">You have no favorites saved at this time. Visit the Search Foods tab to search foods that you can add to your list of favorites or use to create meals.</h2>
         return (
             <div>
+                <Switch>
+                <Route exact path="/favorites/:id" component={FavoritesDisplay}/>
+                <Route exact path="/favorites" >
                 <FavoriteSearchForm searchType={this.state.searchType} handleSearchType={this.handleSearchType} handleChange={this.handleChange}/>
                 {this.state.editForm ? this.getEditFavorite().map(favorite => <FavoriteEditForm key={favorite.id} handleEdit={this.handleEdit} favorite={favorite}/>) :
                     this.state.name === "" && this.state.category === "" && this.props.favorites.length !== 0 ? this.props.favorites.map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) :
                     this.state.name !== "" && this.props.favorites.length !== 0  ? this.filterFavoritesByName().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) : 
                     this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) 
-                    :null}
+                    :null}</Route>
+                    </Switch>
                 {/* {this.props.message !== "" ? alert(this.props.message) : null} */}
             </div>
+
         )
     }
 }

@@ -8,8 +8,17 @@ class Login extends Component {
         password: ""
     }
 
+    componentWillUnmount() {
+        this.setState({username: "", password: ""})
+    }
+
     handleSubmit = event => {
-        debugger
+        event.preventDefault()
+        if (this.state.username && this.state.password) {
+            this.props.userLogin(this.state)
+        } else (
+            alert("You must provide both your username and password to log into your account.\nPlease try again")
+        )
     }
 
     handleChange = event => {

@@ -10,8 +10,17 @@ class Signup extends Component {
         reason_for_use: ""
     }
 
+    componentWillUnmount() {
+        this.setState({username: "", email: "", password: "", reason_for_use: ""})
+    }
+
     handleSubmit = event => {
-        debugger
+        event.preventDefault()
+        if (this.state.username && this.state.email && this.state.password && this.state.username.length >= 6) {
+            this.props.userSignup(this.state)
+        } else (
+            alert("You must provide both a username and password to sign up for an account and your username must be at least 6 characters in length.\nPlease try again.")
+        )
     }
 
     handleChange = event => {
@@ -33,7 +42,7 @@ class Signup extends Component {
                     <input type="password" name="password" onChange={this.handleChange} value={this.state.password}/><br></br><br></br>
 
                     <label htmlFor="reason">Goal or Reason for Using App</label><br></br>
-                    <textarea id="reason" name="reason" onChange={this.handleChange} value={this.state.reason_for_use} placeholder="Examples...lose weight, count carbs, eat healthier, etc."/><br></br><br></br>
+                    <textarea id="reason" name="reason_for_use" onChange={this.handleChange} placeholder="Examples...lose weight, count carbs, eat healthier, etc."></textarea><br></br><br></br>
                     
                     <input className="submit" type="submit" value="Signup"/>
                 </form>

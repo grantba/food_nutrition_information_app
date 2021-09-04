@@ -7,9 +7,7 @@ import FoodSearchForm from './foods/FoodSearchForm'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Homepage from './components/Homepage';
 import FavoritesContainer from './favorites/FavoritesContainer';
-import FavoritesDisplay from './favorites/FavoritesDisplay';
-import Login from './users/Login';
-import Signup from './users/Signup';
+import UsersContainer from './users/UsersContainer';
 
 class App extends Component {
 
@@ -30,11 +28,11 @@ class App extends Component {
           {this.state.displayCalculator === true ? <Calculator/> : null}
           <Switch>
             <Route exact path="/" component={Homepage}></Route>
-            <Route exact path="/favorites" component={FavoritesContainer}/>
-            <Route path="/favorites/:id" component={FavoritesDisplay}/>
+            <Route exact path="/home" component={UsersContainer}></Route>
+            <Route path="/favorites" component={FavoritesContainer}/>
             <Route path="/search_foods" component={FoodSearchForm}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/signup" component={Signup}/>
+            <Route exact path="/login" component={UsersContainer}/>
+            <Route exact path="/signup" component={UsersContainer}/>
           </Switch>
         </div>
       </Router>

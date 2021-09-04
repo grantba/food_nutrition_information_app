@@ -3,8 +3,8 @@ import '../css/Favorite.css'
 import {connect} from 'react-redux'
 
 function FavoritesDisplay(props) {
-    const favorite = !!props.match ? props.favorites.find(fav => fav.id === parseInt(props.match.params.id)) : props.favorite
-    
+    const favorite = props.match ? props.favorites.find(fav => fav.id === parseInt(props.match.params.id)) : props.favorite
+    if (!favorite) return <h2 className="error">There was an error loading your request.</h2>
     return (
         <div className="favorite" id={favorite.id}>
             <img src={favorite.food.thumbnail} alt={favorite.food.food_name}></img>
