@@ -22,12 +22,12 @@
 }
   
 .navbar li a, .navbar #dropbtn {
-    display: inline-block;
+    display: block;
     color: rgb(235, 195, 64);
-    text-align: center;
     font-weight: 900;
     padding: 14px 16px;
     text-decoration: none;
+    text-align: left;
 }
   
 .navbar li a:hover, .navbar #dropdown:hover #dropbtn {
@@ -35,7 +35,7 @@
 }
   
 .navbar li#dropdown {
-    display: inline-block;
+    display: block;
 }
   
 .navbar #dropdown-content {
@@ -52,8 +52,8 @@
     padding: 8px 10px;
     text-decoration: none;
     display: block;
-    text-align: left;
     font-weight: 900;
+    text-align: center;
 }
   
 .navbar #dropdown-content a:hover {

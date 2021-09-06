@@ -87,9 +87,9 @@ class FavoritesContainer extends Component {
     }
 
     render() {
-        if (localStorage.getItem('user') === null) return <h2 className="loading">Loading...</h2>
+        // if (localStorage.getItem('user') === null) return <h2 className="loading">Loading...</h2>
         if (!!this.props.requesting) return <h2 className="loading">Loading...</h2>
-        if (!!this.props.message) return <h2 className="loading">{this.props.message}</h2>
+        // if (!!this.props.message) return <h2 className="loading">{this.props.message}</h2>
         if (this.props.requesting === false && this.props.message === "" && this.props.favorites.length === 0) return <h2 className="empty-message">You have no favorites saved at this time. Visit the Search Foods tab to search foods that you can add to your list of favorites or use to create meals.</h2>
         return (
             <div>

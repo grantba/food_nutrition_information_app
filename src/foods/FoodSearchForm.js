@@ -38,7 +38,7 @@ class FoodSearchForm extends Component {
                 </form>
                 {this.props.food.length !== 0 ? <Food food={this.props.food} addFavoriteFood={this.props.addFavoriteFood}/> : 
                     this.props.searchMessage !== "" ? <h2 className="error">{this.props.searchMessage}.<br></br>Please try again.</h2> : 
-                    this.props.favoriteMessage !== "" ? <h2 className="error">{this.props.favoriteMessage}</h2> :
+                    this.props.favoriteMessage === "This food has been added to your favorites." ? <h2 className="error">{this.props.favoriteMessage}</h2> :
                     this.props.requesting ? <h2 className="loading">Loading...</h2> : null}
             </div>
         )
