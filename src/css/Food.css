@@ -3,9 +3,7 @@
     max-width: 275px;
     font-family: arial;
     background-color: wheat;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 10%;
+    margin: 5% auto 8% auto;
     border-radius: 15px;
     text-align: center;
 }

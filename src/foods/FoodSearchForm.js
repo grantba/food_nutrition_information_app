@@ -36,7 +36,7 @@ class FoodSearchForm extends Component {
                     <input onChange={this.onChange} type="text" name="foodItem" placeholder="Name of Food"></input>  
                     <button>Search</button>
                 </form>
-                {this.props.food.length !== 0 ? <Food food={this.props.food} addFavoriteFood={this.props.addFavoriteFood}/> : 
+                {this.props.food.length !== 0 ? <Food user={this.props.user} food={this.props.food} addFavoriteFood={this.props.addFavoriteFood}/> : 
                     this.props.searchMessage !== "" ? <h2 className="error">{this.props.searchMessage}.<br></br>Please try again.</h2> : 
                     this.props.favoriteMessage === "This food has been added to your favorites." ? <h2 className="error">{this.props.favoriteMessage}</h2> :
                     this.props.requesting ? <h2 className="loading">Loading...</h2> : null}
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
         food: state.searchResult.searchResult,
         favoriteMessage: state.favorites.message,
         searchMessage: state.searchResult.message,
-        requesting: state.searchResult.requesting
+        requesting: state.searchResult.requesting, 
+        user: state.user
     }
 }
 

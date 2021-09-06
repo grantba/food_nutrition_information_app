@@ -17,7 +17,9 @@ export function deleteFavoriteFood(id) {
             headers: authHeader()
         }
         fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
-        .then(() => dispatch({type: 'DELETE_FAVORITE_FOOD', id}))
+        .then(() => 
+        alert("Your favorite has been deleted."),
+        dispatch({type: 'DELETE_FAVORITE_FOOD', id}))
     }
 }
 

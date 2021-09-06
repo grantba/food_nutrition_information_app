@@ -17,8 +17,12 @@ export default function Food(props) {
             <p>Protein: {props.food.nf_protein} g</p>
             <p>Potassium: {props.food.nf_potassium} mg</p>
             <p>Serving Size: {props.food.serving_qty} {props.food.serving_unit}</p>
-            <p>Serving Weight: {props.food.serving_weight_grams} g</p>
-            <button onClick={() => props.addFavoriteFood(props.food)}>Add to Favorites</button>
+            {props.user.loggedIn === false ? 
+                <p style={{paddingBottom: "10px"}}>Serving Weight: {props.food.serving_weight_grams} g</p> :
+                <>
+                <p>Serving Weight: {props.food.serving_weight_grams} g</p>
+                <button onClick={() => props.addFavoriteFood(props.food)}>Add to Favorites</button>
+                </>}
         </div>
     )
 }

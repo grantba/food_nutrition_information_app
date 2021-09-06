@@ -18,7 +18,9 @@ class FavoritesContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.getFavorites()
+        if (this.props.user.loggedIn === true) {
+            this.props.getFavorites()
+        }
     }
 
     handleSearchType = (type) => {
@@ -83,13 +85,13 @@ class FavoritesContainer extends Component {
             }
             this.setState({...this.state, editForm: false, editId: 0})
             this.props.editFavoriteFood(foodItem)
+            alert("Your favorite has been upated.")
         }
     }
 
     render() {
-        // if (localStorage.getItem('user') === null) return <h2 className="loading">Loading...</h2>
+        if (this.props.user.loggedIn === false) return <h2 className="loading">You must have an account to create favorites.</h2>
         if (!!this.props.requesting) return <h2 className="loading">Loading...</h2>
-        // if (!!this.props.message) return <h2 className="loading">{this.props.message}</h2>
         if (this.props.requesting === false && this.props.message === "" && this.props.favorites.length === 0) return <h2 className="empty-message">You have no favorites saved at this time. Visit the Search Foods tab to search foods that you can add to your list of favorites or use to create meals.</h2>
         return (
             <div>
@@ -103,7 +105,6 @@ class FavoritesContainer extends Component {
                     this.state.category !== "" && this.props.favorites.length !== 0 ? this.filterFavoritesByCategory().map(favorite => <FavoritesDisplay key={favorite.id} editFavorite={this.editFavorite} deleteFavoriteFood={this.props.deleteFavoriteFood} favorite={favorite}/>) 
                     :null}</Route>
                     </Switch>
-                {/* {this.props.message !== "" ? alert(this.props.message) : null} */}
             </div>
 
         )
@@ -116,7 +117,8 @@ const mapStateToProps = (state) => {
     return {
         favorites: state.favorites.favorites,
         message: state.favorites.message,
-        requesting: state.favorites.requesting
+        requesting: state.favorites.requesting,
+        user: state.user
     }
 }
 

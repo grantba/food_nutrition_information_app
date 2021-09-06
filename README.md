@@ -1,70 +1,79 @@
-# Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Welcome to the Food Nutrition Information App!
 
-In the project directory, you can run:
+The Food Nutrition Information App is a Single Page Application (SPA). The frontend was built with HTML, CSS, React, Redux, and Thunk. The frontend communicates with a backend API built with Ruby on Rails. I designed and built this application for my phase 5 portfolio project for Flatiron School's Software Engineering bootcamp program. This application allows a user to search various foods. It will then display the nutritional information for the selected food item. This app would be very helpful for anyone who is either counting carbohydrates or calories, or would just like to know the nutritional information of what they're eating, so they can possibly make better food choices. The user can search for foods even without creating an account. However, if the user does decide to create an account, they will have the option to save foods to favorites which they can easily access later. They will also have the option to create meals, which would be helpful for meals that the user eats frequently, because the app will automatically add all the nutritional information together for all food items in the given meal, providing the user a total of each nutrient (calories, carbs, fat, etc.) for the entire meal. The nutritional information and food images are obtained via the Nutritionix API. Once a user saves a food item to favorites, that food item will then be added to the Rails backend API, and the user can then edit the food item, making any changes necessary.
 
-### `yarn start`
+I hope you like the app and enjoy all the great information it provides!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Requirements:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project requires Ruby (version '2.6.1') and Ruby Gems.
 
-### `yarn test`
+You will also need to request an API Key from the Nutritionix API. They are free and can be requested at https://www.nutritionix.com/business/api. The API Key is what allows you to search all the great food items for their nutritional information. This is required in order to use the app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create a .env file and add your API Key and Application ID to the file as follows.
 
-### `yarn build`
+REACT_APP_KEY = your_api_key
+REACT_APP_APPLICATION_ID = your_application_id
+REACT_APP_REMOTE_USER_ID = 0
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The remote user id is not something that is given to you when you request an API key but it should be set to zero. None of these items should be wrapped in quotes as shown above. Everything is set up on the frontend so once you add this information in the .env file, everything should work as expected.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Setup:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+These are the steps to get the application up and running:
 
-### `yarn eject`
+Step 1. Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You will need to clone both the frontend and backend repositories. The instructions for the frontend application are listed below.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+frontend - https://github.com/grantba/food_nutrition_information_app.git
+backend - https://github.com/grantba/food_nutrition_information_api.git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clone the frontend repository into your developer environment, then run the following commands in your terminal:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+git clone https://github.com/grantba/food_nutrition_information_app.git 
+cd food_nutrition_information_app 
+npm install 
+npm start
 
-## Learn More
+You may be prompted with a question in yout terminal, like the following:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+"Something is already running on port 3000. Probably:
+...
+Would you like to run the app on another port instead? (Y/n)"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If this happens, just type Y and it will start the application for you on another port.
 
-### Code Splitting
+Once you have both your backend and frontend running, you are ready to use the app. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contributing:
 
-### Analyzing the Bundle Size
+Bug reports and pull requests are welcome on GitHub at https://github.com/grantba/food_nutrition_information_app.git. For major changes, please open an issue first to discuss what you would like to change.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+License:
 
-### Making a Progressive Web App
+This React application is available as open source under the terms of the MIT License (see LICENSE file for more information).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Check out my blog post:
 
-### Advanced Configuration
+Here is the link to my blog post where I discuss how to use Redux in an React application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+https://grant-blaire.medium.com/how-to-use-redux-in-a-react-application-acd673fb67d5
 
-### Deployment
+Video Walkthrough:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Here is the link to a video walkthrough of this application.
 
-### `yarn build` fails to minify
+https://youtu.be/WTDonCLN-Ls
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Sources I used for my project:
+
+All nutritional information and images were obtained through the Nutritionix API.
+
+Nutritionix API, https://www.nutritionix.com/
+Food Background Image, https://cdn.hipwallpaper.com/i/64/5/ebi6tc.jpg
+
+Author:
+Blaire Grant
