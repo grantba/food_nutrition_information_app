@@ -1,3 +1,5 @@
+import {authHeader} from './auth'
+
 export function getFavorites() {
     return (dispatch) => {
         dispatch({type: 'START_FETCHING_FAVORITES'});
@@ -65,16 +67,5 @@ export function addFavoriteFood(foodItem) {
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
             .then(favorite => dispatch({type: 'ADD_FAVORITE_FOOD', favorite}))    
-    }
-}
-
-function authHeader() {
-    // return authorization header with jwt token
-    let user = localStorage.getItem('user')
-    let userToken = JSON.parse(localStorage.getItem('user')).jwt
-    if (user && userToken) {
-        return {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + userToken}
-    } else {
-        return {}
     }
 }

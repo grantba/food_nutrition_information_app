@@ -7,6 +7,7 @@ import {logout} from '../actions/users'
 class Navbar extends Component {
 
     render() {
+        const getUser = this.props.user.loggedIn === false ? null : `users/${this.props.user.user.id}/edit`
         return (
             <div className="navbar">
                 {this.props.user.loggedIn === false ?
@@ -24,7 +25,7 @@ class Navbar extends Component {
                     <li id="dropdown">
                         <a href="my_account_information" id="dropbtn">My Account</a>
                         <div id="dropdown-content">
-                        <NavLink to="/edit_account_information"><a href="#">Edit Account Information</a></NavLink> 
+                        <NavLink to={getUser}><a href="#">Edit Account Information</a></NavLink> 
                         {/* add delete account option in edit form */}
                         <a href="#" onClick={this.props.logout}>Logout</a>
                         </div>

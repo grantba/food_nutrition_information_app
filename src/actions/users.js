@@ -1,3 +1,5 @@
+import {authHeader} from './auth'
+
 export function userLogin(userInfo) {
     return (dispatch) => {
         dispatch({type: 'START_AUTHORIZATION'});
@@ -33,11 +35,38 @@ export function userSignup(userInfo) {
         .then(user => {
             if (user.message) {
                 alert(user.message)
-            } else {
+            } 
+            if (user.user.date) {
                 const userData = user.user
                 localStorage.setItem('user', JSON.stringify(user))            
                 dispatch({type:'SIGNUP', userData}) 
             }
+        })
+    }
+}
+
+export function editUser(userInfo) {
+    return (dispatch) => {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: authHeader(),
+            body: JSON.stringify({user: userInfo})
+        }
+        fetch(`http://localhost:3000/users/${userInfo.id}`, requestOptions)
+        .then(resp => resp.json())
+        .then(user => {
+            if (user.message) {
+                alert(user.message)
+            } else {
+                const userData = user.user
+                localStorage.clear('user')
+                localStorage.setItem('user', JSON.stringify(user))  
+                alert("Your account information has been updated.")          
+                dispatch({type:'EDIT_USER', userData}) 
+            }
+        })
+        .catch(() => {
+            alert("There was an issue updating your account information.\nPlease try again.")
         })
     }
 }

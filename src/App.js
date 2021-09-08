@@ -34,6 +34,7 @@ class App extends Component {
             <Route path="/search_foods" component={FoodSearchForm}/>
             <Route exact path="/login" component={UsersContainer}/>
             <Route exact path="/signup" component={UsersContainer}/>
+            <Route path="/users/:id/edit" component={UsersContainer}/>
             <Route path='/meals' component={MealsContainer}/>
           </Switch>
         </div>
