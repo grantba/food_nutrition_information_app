@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../css/UsersForms.css'
+import { withRouter } from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -18,6 +19,7 @@ class Signup extends Component {
         event.preventDefault()
         if (this.state.username && this.state.email && this.state.password && this.state.username.length >= 6) {
             this.props.userSignup(this.state)
+            this.props.history.push('/home')
         } else (
             alert("You must provide both a username and password to sign up for an account and your username must be at least 6 characters in length.\nPlease try again.")
         )
@@ -51,4 +53,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup
+export default withRouter(Signup)

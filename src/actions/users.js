@@ -12,7 +12,7 @@ export function userLogin(userInfo) {
         .then(resp => resp.json())
         .then(user => {
             if (user.message) {
-                alert(user.message)
+                dispatch({type: 'LOGIN_ERROR', user})
             } else {
                 const userData = user.user
                 localStorage.setItem('user', JSON.stringify(user))            
@@ -34,9 +34,8 @@ export function userSignup(userInfo) {
         .then(resp => resp.json())
         .then(user => {
             if (user.message) {
-                alert(user.message)
-            } 
-            if (user.user.date) {
+                dispatch({type: 'SIGNUP_ERROR', user})
+            } else {
                 const userData = user.user
                 localStorage.setItem('user', JSON.stringify(user))            
                 dispatch({type:'SIGNUP', userData}) 
@@ -54,19 +53,35 @@ export function editUser(userInfo) {
         }
         fetch(`http://localhost:3000/users/${userInfo.id}`, requestOptions)
         .then(resp => resp.json())
-        .then(user => {
+        .then(user => { 
             if (user.message) {
-                alert(user.message)
+                dispatch({type: 'EDIT_USER_ERROR', user})
             } else {
                 const userData = user.user
                 localStorage.clear('user')
                 localStorage.setItem('user', JSON.stringify(user))  
-                alert("Your account information has been updated.")          
                 dispatch({type:'EDIT_USER', userData}) 
             }
         })
-        .catch(() => {
-            alert("There was an issue updating your account information.\nPlease try again.")
+    }
+}
+
+export function deleteUser(userId) {
+    return (dispatch) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: authHeader(),
+            body: JSON.stringify({user: userId})
+        }
+        fetch(`http://localhost:3000/users/${userId}`, requestOptions)
+        .then(resp => resp.json())
+        .then(user => {         
+            if (user.message === "Failed to delete user account.") {
+                dispatch({type: 'DELETE_USER_ERROR', user})
+            } else {
+                localStorage.clear('user')
+                dispatch({type:'DELETE_USER', user}) 
+            }
         })
     }
 }
@@ -75,5 +90,11 @@ export function logout() {
     localStorage.clear('user')
     return (dispatch) => {
         dispatch({type: 'LOGOUT'})
+    }
+}
+
+export function clearMessage() {
+    return (dispatch) => {
+        dispatch({type: 'CLEAR_USER_MESSAGE'})
     }
 }

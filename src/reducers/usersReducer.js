@@ -11,20 +11,6 @@ function usersReducer(state = initialState, action) {
                 requesting: true
             }
 
-        case "START_SIGNUP":
-            return {
-                ...initialState,
-                message: "Signing up...",
-                requesting: true
-            }
-
-        case "START_EDITING_ACCOUNT":
-            return {
-                ...initialState,
-                message: "Editing Your Account...",
-                requesting: true
-            }
-
         case "LOGIN":
             return {
                 loggedIn: true,
@@ -33,11 +19,57 @@ function usersReducer(state = initialState, action) {
                 requesting: false
             }
 
+        case "LOGIN_ERROR":
+            return {
+                loggedIn: false,
+                user: [],
+                message: action.user.message,
+                requesting: false
+            }
+
+        case "START_SIGNUP":
+            return {
+                ...initialState,
+                message: "Signing up...",
+                requesting: true
+            }
+
         case "SIGNUP":
             return {
                 loggedIn: true,
                 user: action.userData.data,
                 message: "",
+                requesting: false
+            }
+
+        case "SIGNUP_ERROR":
+            return {
+                loggedIn: false,
+                user: [],
+                message: action.user.message,
+                requesting: false
+            }
+
+        case "START_EDITING_ACCOUNT":
+            return {
+                ...state,
+                message: "Editing Your Account...",
+                requesting: true
+            }
+
+        case "EDIT_USER":
+            return {
+                loggedIn: true,
+                user: action.userData.data,
+                message: "Your account information has been updated.",
+                requesting: false
+            }
+
+
+        case "EDIT_USER_ERROR":
+            return {
+                ...state,
+                message: action.user.message,
                 requesting: false
             }
 
@@ -49,26 +81,25 @@ function usersReducer(state = initialState, action) {
                 requesting: false
             }
 
-        // case "DELETE_FAVORITE_FOOD":
-        //     return {
-        //         user: [...state.favorites.slice(0, index), ...state.favorites.slice(index + 1)],
-        //         message: "Your favorite has been deleted.",
-        //         requesting: false
-        //     }
+        case "DELETE_USER":
+            return {
+                loggedIn: false,
+                user: [],
+                message: "Your account has been deleted.",
+                requesting: false            
+            }
 
-        case "EDIT_USER":
-            if (action.userData === undefined) {
-                return {
-                    ...state,
-                    message: "There was an issue updating your account information.\nPlease try again."
-                }
-            } else {
-                return {
-                    loggedIn: true,
-                    user: action.userData.data,
-                    message: "Your account information has been updated.",
-                    requesting: false
-                }
+        case "DELETE_USER_ERROR":
+            return {
+                ...state,
+                message: action.user.message,
+                requesting: false
+            }
+
+        case "CLEAR_USER_MESSAGE":
+            return {
+                ...state,
+                message: ""
             }
   
         default:

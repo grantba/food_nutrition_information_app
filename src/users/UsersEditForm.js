@@ -30,8 +30,13 @@ class UsersEditForm extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
+    handleDelete = () => {
+        this.props.deleteUser(this.state.id)
+        this.props.history.push('/')
+    }
+
     render() {
-        const getUserData = this.props.user.user.reason_for_use === "" ? 
+        const getUserData = this.props.user.user.attributes.reason_for_use === "" ? 
         <textarea id="reason" name="reason_for_use" onChange={this.handleChange} placeholder="Examples...lose weight, count carbs, eat healthier, etc."></textarea>
         : <textarea id="reason" name="reason_for_use" onChange={this.handleChange} defaultValue={this.props.user.user.attributes.reason_for_use}></textarea>
         return (
@@ -52,10 +57,11 @@ class UsersEditForm extends Component {
                     <label htmlFor="reason">Goal or Reason for Using App</label><br></br>
                     {getUserData}
                     
+                    <button id="delete" className="submit" style={{color: "red", width: "35%", margin: "5% 30% 5%"}}onClick={(event) => this.handleDelete(event)}>Delete Account</button>
+
                     <button id="cancel" className="submit" onClick={() => this.props.history.push('/home')}>Cancel</button>
                     <input className="submit" type="submit" value="Edit"/>
                 </form>
-                {/* {this.props.message !== "" ? <h2 className="loading">{this.props.message}</h2> : null} */}
             </div>
         )
     }

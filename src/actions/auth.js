@@ -8,3 +8,7 @@ export function authHeader() {
         return {}
     }
 }
+
+export function getUserId() {
+    let userId = parseInt(JSON.parse(localStorage.getItem('user')).data.id)
+}

@@ -3,14 +3,17 @@ import Login from './Login'
 import Signup from './Signup'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {userLogin, userSignup, editUser} from '../actions/users'
+import {userLogin, userSignup, editUser, deleteUser, clearMessage} from '../actions/users'
 import UsersHomepage from './UsersHomepage'
 import UsersEditForm from './UsersEditForm'
 
 class UsersContainer extends Component {
 
+    componentWillUnmount() {
+        this.props.clearMessage()
+    }
+
     render() {
-        debugger
         return (
            <div>
                {this.props.user.loggedIn === false ?
@@ -20,8 +23,8 @@ class UsersContainer extends Component {
                 </Switch>
                 : 
                 <Switch>
-                    <Route path="/home"><UsersHomepage user={this.props.user.user.attributes.username}/></Route>
-                    <Route path="/users/:id/edit"><UsersEditForm message={this.props.message} user={this.props.user} editUser={this.props.editUser}/></Route>
+                    <Route path="/home"><UsersHomepage user={this.props.user.user.attributes.username} message={this.props.message}/></Route>
+                    <Route path="/users/:id/edit"><UsersEditForm user={this.props.user} editUser={this.props.editUser} deleteUser={this.props.deleteUser}/></Route>
                 </Switch>
             }
             </div>
@@ -36,4 +39,4 @@ const mapStateToProps = state => {
     } 
 }
 
-export default connect(mapStateToProps, {userSignup, userLogin, editUser})(UsersContainer)
+export default connect(mapStateToProps, {userSignup, userLogin, editUser, deleteUser, clearMessage})(UsersContainer)
