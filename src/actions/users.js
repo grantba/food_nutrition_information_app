@@ -60,6 +60,7 @@ export function editUser(userInfo) {
                 const userData = user.user
                 localStorage.clear('user')
                 localStorage.setItem('user', JSON.stringify(user))  
+                alert("Your account information has been upated.")
                 dispatch({type:'EDIT_USER', userData}) 
             }
         })
@@ -80,6 +81,7 @@ export function deleteUser(userId) {
                 dispatch({type: 'DELETE_USER_ERROR', user})
             } else {
                 localStorage.clear('user')
+                alert("Your account has been deleted.")
                 dispatch({type:'DELETE_USER', user}) 
             }
         })
@@ -90,11 +92,5 @@ export function logout() {
     localStorage.clear('user')
     return (dispatch) => {
         dispatch({type: 'LOGOUT'})
-    }
-}
-
-export function clearMessage() {
-    return (dispatch) => {
-        dispatch({type: 'CLEAR_USER_MESSAGE'})
     }
 }

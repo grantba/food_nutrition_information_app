@@ -95,12 +95,6 @@ function usersReducer(state = initialState, action) {
                 message: action.user.message,
                 requesting: false
             }
-
-        case "CLEAR_USER_MESSAGE":
-            return {
-                ...state,
-                message: ""
-            }
   
         default:
             return state    

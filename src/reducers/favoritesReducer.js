@@ -1,4 +1,5 @@
 function favoritesReducer(state = {favorites: [], requesting: false, message: ""}, action) {
+    debugger
     let index;
     switch (action.type) {
         case "START_FETCHING_FAVORITES":

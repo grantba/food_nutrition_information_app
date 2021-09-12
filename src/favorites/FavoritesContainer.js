@@ -62,35 +62,14 @@ class FavoritesContainer extends Component {
         if (event.target.id === "cancel") {
             this.setState({...this.state, editForm: false, editId: 0}) 
         } else {
-            const foodItem = {
-                thumbnail: event.target.thumbnail.value,
-                food_name: event.target.food_name.value,
-                food_category_type: event.target.category_type.value,
-                calories: event.target.calories.value,
-                total_fat: event.target.total_fat.value,
-                saturated_fat: event.target.saturated_fat.value,
-                cholesterol: event.target.cholesterol.value,
-                sodium: event.target.sodium.value,
-                total_carbohydrate: event.target.carbohydrate.value,
-                dietary_fiber: event.target.fiber.value,
-                sugars: event.target.sugars.value,
-                protein: event.target.protein.value,
-                potassium: event.target.potassium.value,
-                serving_qty: event.target.serving_qty.value,
-                serving_unit: event.target.serving_unit.value,
-                serving_weight_grams: event.target.serving_weight.value,
-                user_id: event.target.user_id.value,
-                food_id: event.target.food_id.value,
-                id: event.target.id // favorite_id
-            }
+            const foodItem = event.target
             this.setState({...this.state, editForm: false, editId: 0})
             this.props.editFavoriteFood(foodItem)
-            alert("Your favorite has been upated.")
         }
     }
 
     render() {
-        if (this.props.user.loggedIn === false) return <h2 className="loading">You must be logged in to access your favorites.</h2>
+        if (this.props.user.loggedIn === false) return <h2 className="loading">You must signup or login to access favorites.</h2>
         if (!!this.props.requesting) return <h2 className="loading">Loading...</h2>
         if (this.props.requesting === false && this.props.message === "" && this.props.favorites.length === 0) return <h2 className="empty-message">You have no favorites saved at this time. Visit the Search Foods tab to search foods that you can add to your list of favorites or use to create meals.</h2>
         return (
@@ -112,8 +91,6 @@ class FavoritesContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // eventually filter by current user
-    // .filter(favorites => {favorites.userId == 1})
     return {
         favorites: state.favorites.favorites,
         message: state.favorites.message,

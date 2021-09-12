@@ -1,22 +1,29 @@
-import {authHeader} from './auth'
+import {authHeader, getUserId} from './auth'
 
 export function getFavorites() {
     return (dispatch) => {
         dispatch({type: 'START_FETCHING_FAVORITES'});
         const requestOptions = {
-            headers: authHeader()
+            headers: authHeader(),
         }
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
-            .then(favorites => dispatch({type: 'GET_FAVORITES', favorites}))    
+            .then(allFavorites => { 
+                const favorites = allFavorites.filter(favorite => favorite.user_id === getUserId())
+                dispatch({type: 'GET_FAVORITES', favorites})
+            })    
     }
 }
 
 export function deleteFavoriteFood(id) {
     return(dispatch) => {
+        const params = {
+            user_id: getUserId()
+        }
         const requestOptions = {
             method: 'DELETE',
-            headers: authHeader()
+            headers: authHeader(),
+            body: JSON.stringify({favorite: params})
         }
         fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
         .then(() => 
@@ -27,14 +34,38 @@ export function deleteFavoriteFood(id) {
 
 export function editFavoriteFood(foodItem) {
     return(dispatch) => {
+        const params = {
+            thumbnail: foodItem.thumbnail.value,
+            food_name: foodItem.food_name.value,
+            food_category_type: foodItem.category_type.value,
+            calories: foodItem.calories.value,
+            total_fat: foodItem.total_fat.value,
+            saturated_fat: foodItem.saturated_fat.value,
+            cholesterol: foodItem.cholesterol.value,
+            sodium: foodItem.sodium.value,
+            total_carbohydrate: foodItem.carbohydrate.value,
+            dietary_fiber: foodItem.fiber.value,
+            sugars: foodItem.sugars.value,
+            protein: foodItem.protein.value,
+            potassium: foodItem.potassium.value,
+            serving_qty: foodItem.serving_qty.value,
+            serving_unit: foodItem.serving_unit.value,
+            serving_weight_grams: foodItem.serving_weight.value,
+            food_id: foodItem.food_id.value,
+            user_id: getUserId(),
+            id: foodItem.id // favorite_id
+        }
         const requestOptions = {
             method: 'PATCH',
             headers: authHeader(),
-            body: JSON.stringify({favorite: foodItem})
+            body: JSON.stringify({favorite: params})
         }
         fetch(`http://localhost:3000/favorites/${foodItem.id}`, requestOptions)
             .then(resp => resp.json())
-            .then(favorite => dispatch({type: 'EDIT_FAVORITE_FOOD', favorite}))   
+            .then(favorite => {
+                alert("Your favorite has been upated.")
+                dispatch({type: 'EDIT_FAVORITE_FOOD', favorite})
+            })   
     }
 }
 
@@ -57,7 +88,7 @@ export function addFavoriteFood(foodItem) {
             serving_unit: foodItem.serving_unit,
             serving_weight_grams: foodItem.serving_weight_grams,
             food_category_type: "",
-            user_id: 1
+            user_id: getUserId()
         }
         const requestOptions = {
             method: 'POST',

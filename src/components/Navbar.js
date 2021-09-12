@@ -26,7 +26,6 @@ class Navbar extends Component {
                         <a href="my_account_information" id="dropbtn">My Account</a>
                         <div id="dropdown-content">
                         <NavLink to={getUser}><a href="#">Edit Account Information</a></NavLink> 
-                        {/* add delete account option in edit form */}
                         <a href="#" onClick={this.props.logout}>Logout</a>
                         </div>
                     </li>
