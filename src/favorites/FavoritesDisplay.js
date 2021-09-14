@@ -3,7 +3,7 @@ import '../css/Favorite.css'
 import {connect} from 'react-redux'
 
 function FavoritesDisplay(props) {
-    const favorite = props.match ? props.favorites.find(fav => fav.id === parseInt(props.match.params.id)) : props.favorite
+    const favorite = !!props.match ? props.favorites.find(fav => fav.id === parseInt(props.match.params.id)) : props.favorite
     if (!favorite) return <h2 className="error">There was an error loading your request.</h2>
     return (
         <div className="favorite" id={favorite.id}>
@@ -22,8 +22,8 @@ function FavoritesDisplay(props) {
             <p>Potassium: {favorite.food.potassium} mg</p>
             <p>Serving Size: {favorite.food.serving_qty} {favorite.food.serving_unit}</p>
             <p>Serving Weight: {favorite.food.serving_weight_grams} g</p>
-            <button id="top" onClick={() => props.editFavorite(favorite)} >Edit</button>
-            <button id="bottom" onClick={() => props.deleteFavoriteFood(favorite.id)} >Delete</button>
+            {!!props.match ? null : <button id="top" onClick={() => props.editFavorite(favorite)} >Edit</button>}
+            {!!props.match ? null : <button id="bottom" onClick={() => props.deleteFavoriteFood(favorite.id)} >Delete</button>}
         </div>
     ) 
 }

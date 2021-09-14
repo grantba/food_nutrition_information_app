@@ -2,7 +2,6 @@ import {authHeader} from './auth'
 
 export function userLogin(userInfo) {
     return (dispatch) => {
-        dispatch({type: 'START_AUTHORIZATION'});
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -19,13 +18,12 @@ export function userLogin(userInfo) {
                 dispatch({type:'LOGIN', userData})  
             }
         })  
-        .catch(error =>  alert(`We were unable to log you in due to ${error}.\nPlease try again.`))
+        .catch(error => alert(`We were unable to log you in due to ${error}.\nPlease try again.`))
     }
 }
 
 export function userSignup(userInfo) {
     return (dispatch) => {
-        dispatch({type: 'START_CREATING_ACCOUNT'});
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -42,7 +40,7 @@ export function userSignup(userInfo) {
                 dispatch({type:'SIGNUP', userData}) 
             }
         })
-        .catch(error =>  alert(`We were unable to sign you up for an account due to ${error}.\nPlease try again.`))
+        .catch(error => alert(`We were unable to sign you up for an account due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -66,7 +64,7 @@ export function editUser(userInfo) {
                 dispatch({type:'EDIT_USER', userData}) 
             }
         })
-        .catch(error =>  alert(`We were unable to edit your account due to ${error}.\nPlease try again.`))
+        .catch(error => alert(`We were unable to edit your account due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -89,7 +87,7 @@ export function deleteUser(userId) {
                 dispatch({type:'DELETE_USER', user}) 
             }
         })
-        .catch(error =>  alert(`We were unable to delete your account due to ${error}.\nPlease try again.`))
+        .catch(error => alert(`We were unable to delete your account due to ${error}.\nPlease try again.`))
     }
 }
 

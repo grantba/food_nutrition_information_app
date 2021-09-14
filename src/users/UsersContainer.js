@@ -34,7 +34,8 @@ class UsersContainer extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        // message: state.user.message
+        requesting: state.user.requesting,
+        message: state.user.message
     } 
 }
 

@@ -9,27 +9,52 @@ export function getFavorites() {
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
             .then(favorites => { 
-                // const favorites = allFavorites.filter(favorite => favorite.user_id === getUserId())
+                if (favorites.errors) {
+                    alert(`${favorites.errors}\nPlease try again.`)
+                } else {
                 dispatch({type: 'GET_FAVORITES', favorites})
-            })    
+                }
+            }) 
+        .catch(error => alert(`We were unable to get your favorites due to ${error}.\nPlease try again.`))   
     }
 }
 
-export function deleteFavoriteFood(id) {
-    return(dispatch) => {
-        const requestOptions = {
-            method: 'DELETE',
-            headers: authHeader()
+export function addFavoriteFood(foodItem) {
+    return (dispatch) => {
+        const params = {
+            food_name: foodItem.food_name,
+            calories: foodItem.nf_calories,
+            cholesterol: foodItem.nf_cholesterol,
+            dietary_fiber: foodItem.nf_dietary_fiber,
+            potassium: foodItem.nf_potassium,
+            protein: foodItem.nf_protein,
+            saturated_fat: foodItem.nf_saturated_fat,
+            sodium: foodItem.nf_sodium,
+            sugars: foodItem.nf_sugars,
+            total_carbohydrate: foodItem.nf_total_carbohydrate,
+            total_fat: foodItem.nf_total_fat,
+            thumbnail: foodItem.photo.thumb,
+            serving_qty: foodItem.serving_qty,
+            serving_unit: foodItem.serving_unit,
+            serving_weight_grams: foodItem.serving_weight_grams,
+            food_category_type: "",
+            user_id: getUserId()
         }
-        fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
-        .then(favorite => {      
-            if (favorite.ok === false) {
-                alert("There was an issue deleting your favorite. Please try again.")
-            } else {
-                alert("Your favorite has been deleted.")
-                dispatch({type: 'DELETE_FAVORITE_FOOD', id})
-            }
-        })
+        const requestOptions = {
+            method: 'POST',
+            headers: authHeader(),
+            body: JSON.stringify({favorite: params})
+        }
+        fetch('http://localhost:3000/favorites', requestOptions)
+            .then(resp => resp.json())
+            .then(favorite => {
+                if (favorite.errors) {
+                    alert(`${favorite.errors}\nPlease try again.`)
+                } else {
+                    dispatch({type: 'ADD_FAVORITE_FOOD', favorite})   
+                }
+            })
+            .catch(error => alert(`We were unable to add your favorite due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -63,42 +88,33 @@ export function editFavoriteFood(foodItem) {
         }
         fetch(`http://localhost:3000/favorites/${foodItem.id}`, requestOptions)
             .then(resp => resp.json())
-            .then(favorite => {debugger
-                // alert("Your favorite has been upated.")
-                // dispatch({type: 'EDIT_FAVORITE_FOOD', favorite})
-            })   
+            .then(favorite => {
+                if (favorite.errors) {
+                    alert(`${favorite.errors}\nPlease try again.`)
+                } else {
+                    alert("Your favorite has been upated.")
+                    dispatch({type: 'EDIT_FAVORITE_FOOD', favorite})
+                }
+            })  
+        .catch(error => alert(`We were unable to edit your favorite due to ${error}.\nPlease try again.`)) 
     }
 }
 
-export function addFavoriteFood(foodItem) {
-    return (dispatch) => {
-        const params = {
-            food_name: foodItem.food_name,
-            calories: foodItem.nf_calories,
-            cholesterol: foodItem.nf_cholesterol,
-            dietary_fiber: foodItem.nf_dietary_fiber,
-            potassium: foodItem.nf_potassium,
-            protein: foodItem.nf_protein,
-            saturated_fat: foodItem.nf_saturated_fat,
-            sodium: foodItem.nf_sodium,
-            sugars: foodItem.nf_sugars,
-            total_carbohydrate: foodItem.nf_total_carbohydrate,
-            total_fat: foodItem.nf_total_fat,
-            thumbnail: foodItem.photo.thumb,
-            serving_qty: foodItem.serving_qty,
-            serving_unit: foodItem.serving_unit,
-            serving_weight_grams: foodItem.serving_weight_grams,
-            food_category_type: "",
-            user_id: getUserId()
-        }
+export function deleteFavoriteFood(id) {
+    return(dispatch) => {
         const requestOptions = {
-            method: 'POST',
-            headers: authHeader(),
-            body: JSON.stringify({favorite: params})
+            method: 'DELETE',
+            headers: authHeader()
         }
-        fetch('http://localhost:3000/favorites', requestOptions)
-            .then(resp => resp.json())
-            .then(favorite => {debugger})
-                // dispatch({type: 'ADD_FAVORITE_FOOD', favorite}))    
+        fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
+        .then(favorite => {      
+            if (favorite.ok === false) {
+                alert("There was an issue deleting your favorite. Please try again.")
+            } else {
+                alert("Your favorite has been deleted.")
+                dispatch({type: 'DELETE_FAVORITE_FOOD', id})
+            }
+        })
+        .catch(error => alert(`We were unable to delete your favorite due to ${error}.\nPlease try again.`))
     }
 }
