@@ -11,14 +11,15 @@ export function userLogin(userInfo) {
         fetch('http://localhost:3000/auth', requestOptions)
         .then(resp => resp.json())
         .then(user => {
-            if (user.message) {
-                dispatch({type: 'LOGIN_ERROR', user})
+            if (user.errors) {
+                alert(`Login errors:\n${user.errors}`)
             } else {
                 const userData = user.user
                 localStorage.setItem('user', JSON.stringify(user))            
                 dispatch({type:'LOGIN', userData})  
             }
         })  
+        .catch(error =>  alert(`We were unable to log you in due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -33,14 +34,15 @@ export function userSignup(userInfo) {
         fetch('http://localhost:3000/users', requestOptions)
         .then(resp => resp.json())
         .then(user => {
-            if (user.message) {
-                dispatch({type: 'SIGNUP_ERROR', user})
+            if (user.errors) {
+                alert(`Signup errors:\n${user.errors}\nPlease try again.`)
             } else {
                 const userData = user.user
                 localStorage.setItem('user', JSON.stringify(user))            
                 dispatch({type:'SIGNUP', userData}) 
             }
         })
+        .catch(error =>  alert(`We were unable to sign you up for an account due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -54,8 +56,8 @@ export function editUser(userInfo) {
         fetch(`http://localhost:3000/users/${userInfo.id}`, requestOptions)
         .then(resp => resp.json())
         .then(user => { 
-            if (user.message) {
-                dispatch({type: 'EDIT_USER_ERROR', user})
+            if (user.errors) {
+                alert(`Edit errors:\n${user.errors}\nPlease try again.`)
             } else {
                 const userData = user.user
                 localStorage.clear('user')
@@ -64,6 +66,7 @@ export function editUser(userInfo) {
                 dispatch({type:'EDIT_USER', userData}) 
             }
         })
+        .catch(error =>  alert(`We were unable to edit your account due to ${error}.\nPlease try again.`))
     }
 }
 
@@ -72,25 +75,28 @@ export function deleteUser(userId) {
         const requestOptions = {
             method: 'DELETE',
             headers: authHeader(),
-            body: JSON.stringify({user: userId})
         }
         fetch(`http://localhost:3000/users/${userId}`, requestOptions)
         .then(resp => resp.json())
-        .then(user => {         
-            if (user.message === "Failed to delete user account.") {
-                dispatch({type: 'DELETE_USER_ERROR', user})
+        .then(user => {       
+            if (user.ok === false) {
+                alert("Failed to delete user account.\nPlease try again.")
+            } else if (user.errors) {
+                alert(`Delete errors:\n${user.errors}\nPlease try again.`)
             } else {
                 localStorage.clear('user')
                 alert("Your account has been deleted.")
                 dispatch({type:'DELETE_USER', user}) 
             }
         })
+        .catch(error =>  alert(`We were unable to delete your account due to ${error}.\nPlease try again.`))
     }
 }
 
 export function logout() {
     localStorage.clear('user')
     return (dispatch) => {
+        alert("Thanks for visiting today. Hope to see you again soon.")
         dispatch({type: 'LOGOUT'})
     }
 }

@@ -19,9 +19,9 @@ class Signup extends Component {
         event.preventDefault()
         if (this.state.username && this.state.email && this.state.password && this.state.username.length >= 6) {
             this.props.userSignup(this.state)
-            this.props.history.push('/home')
+            this.props.history.push('/signup')
         } else (
-            alert("You must provide both a username and password to sign up for an account and your username must be at least 6 characters in length.\nPlease try again.")
+            alert("You must provide both a username and password to sign up for an account, and your username must be at least 6 characters in length.\nPlease try again.")
         )
     }
 

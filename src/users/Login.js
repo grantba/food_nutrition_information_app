@@ -17,7 +17,7 @@ class Login extends Component {
         event.preventDefault()
         if (this.state.username && this.state.password) {
             this.props.userLogin(this.state)
-            this.props.history.push('/home')
+            this.props.history.push('/login')
         } else (
             alert("You must provide both your username and password to log into your account.\nPlease try again")
         )

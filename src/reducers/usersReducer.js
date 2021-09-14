@@ -19,14 +19,6 @@ function usersReducer(state = initialState, action) {
                 requesting: false
             }
 
-        case "LOGIN_ERROR":
-            return {
-                loggedIn: false,
-                user: [],
-                message: action.user.message,
-                requesting: false
-            }
-
         case "START_SIGNUP":
             return {
                 ...initialState,
@@ -39,14 +31,6 @@ function usersReducer(state = initialState, action) {
                 loggedIn: true,
                 user: action.userData.data,
                 message: "",
-                requesting: false
-            }
-
-        case "SIGNUP_ERROR":
-            return {
-                loggedIn: false,
-                user: [],
-                message: action.user.message,
                 requesting: false
             }
 
@@ -65,14 +49,6 @@ function usersReducer(state = initialState, action) {
                 requesting: false
             }
 
-
-        case "EDIT_USER_ERROR":
-            return {
-                ...state,
-                message: action.user.message,
-                requesting: false
-            }
-
         case "LOGOUT":
             return {
                 loggedIn: false,
@@ -87,13 +63,6 @@ function usersReducer(state = initialState, action) {
                 user: [],
                 message: "Your account has been deleted.",
                 requesting: false            
-            }
-
-        case "DELETE_USER_ERROR":
-            return {
-                ...state,
-                message: action.user.message,
-                requesting: false
             }
   
         default:

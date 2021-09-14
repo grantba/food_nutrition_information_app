@@ -18,11 +18,11 @@ class UsersEditForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        if (this.state.id && this.state.username && this.state.email && this.state.password && this.state.username.length >= 6) {
+        if (this.state.id && this.state.username && this.state.email && this.state.password) {
             this.props.editUser(this.state)
             this.props.history.push('/home')
         } else (
-            alert("All fields must be filled out completely to edit your account and your username must be at least 6 characters in length.\nPlease try again.")
+            alert("Username, email, and password fields need to be filled out completely to edit your account.\nPlease try again.")
         )
     }
 
@@ -32,7 +32,7 @@ class UsersEditForm extends Component {
 
     handleDelete = () => {
         this.props.deleteUser(this.state.id)
-        this.props.history.push('/')
+        this.props.history.push('/home')
     }
 
     render() {
@@ -57,7 +57,7 @@ class UsersEditForm extends Component {
                     <label htmlFor="reason">Goal or Reason for Using App</label><br></br>
                     {getUserData}
                     
-                    <button id="delete" className="submit" style={{color: "red", width: "35%", margin: "5% 30% 5%"}}onClick={(event) => this.handleDelete(event)}>Delete Account</button>
+                    <button id="delete" className="submit" style={{color: "red", width: "35%", margin: "5% 30% 5%"}} onClick={(event) => this.handleDelete(event)}>Delete Account</button>
 
                     <button id="cancel" className="submit" onClick={() => this.props.history.push('/home')}>Cancel</button>
                     <input className="submit" type="submit" value="Edit"/>

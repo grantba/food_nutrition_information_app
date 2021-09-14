@@ -8,8 +8,8 @@ export function getFavorites() {
         }
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
-            .then(allFavorites => { 
-                const favorites = allFavorites.filter(favorite => favorite.user_id === getUserId())
+            .then(favorites => { 
+                // const favorites = allFavorites.filter(favorite => favorite.user_id === getUserId())
                 dispatch({type: 'GET_FAVORITES', favorites})
             })    
     }
@@ -17,18 +17,19 @@ export function getFavorites() {
 
 export function deleteFavoriteFood(id) {
     return(dispatch) => {
-        const params = {
-            user_id: getUserId()
-        }
         const requestOptions = {
             method: 'DELETE',
-            headers: authHeader(),
-            body: JSON.stringify({favorite: params})
+            headers: authHeader()
         }
         fetch(`http://localhost:3000/favorites/${id}`, requestOptions)
-        .then(() => 
-        alert("Your favorite has been deleted."),
-        dispatch({type: 'DELETE_FAVORITE_FOOD', id}))
+        .then(favorite => {      
+            if (favorite.ok === false) {
+                alert("There was an issue deleting your favorite. Please try again.")
+            } else {
+                alert("Your favorite has been deleted.")
+                dispatch({type: 'DELETE_FAVORITE_FOOD', id})
+            }
+        })
     }
 }
 
@@ -62,9 +63,9 @@ export function editFavoriteFood(foodItem) {
         }
         fetch(`http://localhost:3000/favorites/${foodItem.id}`, requestOptions)
             .then(resp => resp.json())
-            .then(favorite => {
-                alert("Your favorite has been upated.")
-                dispatch({type: 'EDIT_FAVORITE_FOOD', favorite})
+            .then(favorite => {debugger
+                // alert("Your favorite has been upated.")
+                // dispatch({type: 'EDIT_FAVORITE_FOOD', favorite})
             })   
     }
 }
@@ -97,6 +98,7 @@ export function addFavoriteFood(foodItem) {
         }
         fetch('http://localhost:3000/favorites', requestOptions)
             .then(resp => resp.json())
-            .then(favorite => dispatch({type: 'ADD_FAVORITE_FOOD', favorite}))    
+            .then(favorite => {debugger})
+                // dispatch({type: 'ADD_FAVORITE_FOOD', favorite}))    
     }
 }
