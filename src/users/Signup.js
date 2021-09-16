@@ -21,7 +21,7 @@ class Signup extends Component {
             this.props.userSignup(this.state)
             this.props.history.push('/signup')
         } else (
-            alert("You must provide both a username and password to sign up for an account, and your username must be at least 6 characters in length.\nPlease try again.")
+            alert("You must provide both a username, email, and password to sign up for an account, and your username must be at least 6 characters in length.\nPlease try again.")
         )
     }
 

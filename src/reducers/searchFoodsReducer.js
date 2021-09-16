@@ -2,6 +2,7 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
     switch (action.type) {
         case "START_SEARCHING_FOOD":
             return {
+                ...state,
                 searchResult: [],
                 message: "",
                 requesting: true
@@ -9,12 +10,14 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
         case "SEARCH_FOOD":
             if (action.food.message) {
                 return {
+                    ...state,
                     searchResult: [],
                     message: action.food.message,
                     requesting: false
                 } 
             } else {
                 return {
+                    ...state,
                     searchResult: action.food.foods[0],
                     message: "",
                     requesting: false
@@ -23,6 +26,7 @@ function searchFoodsReducer(state = {searchResult: [], requesting: false, messag
 
         case "DELETE_SEARCH":
             return {
+                ...state,
                 searchResult: [],
                 message: "",
                 requesting: false

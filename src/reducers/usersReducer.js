@@ -5,6 +5,7 @@ function usersReducer(state = initialState, action) {
     switch (action.type) {
         case "LOGIN":
             return {
+                ...state,
                 loggedIn: true,
                 user: action.userData.data,
                 message: "",
@@ -13,6 +14,7 @@ function usersReducer(state = initialState, action) {
 
         case "SIGNUP":
             return {
+                ...state,
                 loggedIn: true,
                 user: action.userData.data,
                 message: "",
@@ -21,6 +23,7 @@ function usersReducer(state = initialState, action) {
 
         case "EDIT_USER":
             return {
+                ...state,
                 loggedIn: true,
                 user: action.userData.data,
                 message: "Your account information has been updated.",
@@ -29,6 +32,7 @@ function usersReducer(state = initialState, action) {
 
         case "LOGOUT":
             return {
+                ...state,
                 loggedIn: false,
                 user: [],
                 message: "Thanks for visiting today.",
@@ -37,6 +41,7 @@ function usersReducer(state = initialState, action) {
 
         case "DELETE_USER":
             return {
+                ...state,
                 loggedIn: false,
                 user: [],
                 message: "Your account has been deleted.",

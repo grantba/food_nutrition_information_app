@@ -3,6 +3,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
     switch (action.type) {
         case "START_FETCHING_FAVORITES":
             return {
+                ...state,
                 favorites: [...state.favorites],
                 message: "",
                 requesting: true
@@ -10,6 +11,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
 
         case "GET_FAVORITES":
             return {
+                ...state,
                 favorites: action.favorites,
                 message: "",
                 requesting: false
@@ -17,6 +19,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
 
         case "ADD_FAVORITE_FOOD":
             return {
+                ...state,
                 favorites: [...state.favorites, action.favorite],
                 message: "This food has been added to your favorites.",
                 requesting: false
@@ -25,6 +28,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
         case "DELETE_FAVORITE_FOOD":
             index = state.favorites.findIndex(fav => fav.id === action.id)
             return {
+                ...state,
                 favorites: [...state.favorites.slice(0, index), ...state.favorites.slice(index + 1)],
                 message: "Your favorite has been deleted.",
                 requesting: false
@@ -33,6 +37,7 @@ function favoritesReducer(state = {favorites: [], requesting: false, message: ""
         case "EDIT_FAVORITE_FOOD":
             index = state.favorites.findIndex(fav => fav.id === action.favorite.id)
             return {
+                ...state,
                 favorites: [...state.favorites.slice(0, index), action.favorite, ...state.favorites.slice(index + 1)],
                 message: "Your favorite has been upated.",
                 requesting: false
