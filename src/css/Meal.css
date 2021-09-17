@@ -1,0 +1,54 @@
+.meal {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 275px;
+    font-family: arial;
+    background-color: wheat;
+    margin: 6% auto 8% auto;
+    text-align: center;
+    border-radius: 15px;
+    padding-bottom: 8px;
+}
+
+/* .meal img {
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+} */
+
+.meal .title {
+    color: black;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.meal h2 {
+    color: black;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.meal button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 15px;
+    color: wheat;
+    background-color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    width: 45%;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.meal p {
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+}
+
+.meal button:hover, a:hover {
+    opacity: 0.7;
+}

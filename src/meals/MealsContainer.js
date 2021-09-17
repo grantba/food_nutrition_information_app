@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import MealsDisplay from './MealsDisplay'
+import MealWithFoodDisplay from './MealWithFoodDisplay'
 import {connect} from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import {getMeals} from '../actions/meals'
 
 class MealsContainer extends Component {
 
@@ -17,8 +20,10 @@ class MealsContainer extends Component {
             return (
                 <div>
                     <Switch>
-                        <Route exact path="/meals/:id" component={MealsDisplay}/>
-                        <Route exact path="/meals" ></Route>
+                        <Route exact path="/meals" >
+                            {this.props.meals.map(meal => <MealsDisplay key={meal.id} meal={meal} getMeal={this.props.getMeal}/>)}
+                        </Route>
+                        <Route exact path="/meals/:id" component={MealWithFoodDisplay}/>
                     </Switch>            
                 </div>
             )
@@ -37,4 +42,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MealsContainer)
+export default connect(mapStateToProps, {getMeals})(MealsContainer)
